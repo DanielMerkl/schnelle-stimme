@@ -1,35 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 
-import { routes } from './utils/routes';
-import HomePage from './page/home/HomePage';
-import PollPage from './page/poll/PollPage';
-import CreatePollPage from './page/createPoll/CreatePollPage';
-import JoinPollPage from './page/joinPoll/JoinPollPage';
-import ResultPage from './page/result/ResultPage';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { Content } from './components/Content';
 
-const App = () => {
+export const App = () => {
+  const styles = useStyles();
+
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path={routes.home} exact>
-          <HomePage />
-        </Route>
-        <Route path={routes.poll}>
-          <PollPage />
-        </Route>
-        <Route path={routes.createPoll}>
-          <CreatePollPage />
-        </Route>
-        <Route path={routes.joinPoll}>
-          <JoinPollPage />
-        </Route>
-        <Route path={routes.result}>
-          <ResultPage />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <div className={styles.wrapper}>
+      <Header />
+      <Content />
+      <Footer />
+    </div>
   );
 };
 
-export default App;
+const useStyles = makeStyles({
+  wrapper: {
+    height: '100vh',
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr auto',
+  },
+});
