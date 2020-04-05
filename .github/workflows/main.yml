@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches: 
+      - master
 
 jobs:
   firebase-deploy:
@@ -13,6 +16,8 @@ jobs:
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install
+      - name: Test
+        run: npm run test
       - name: Build
         run: npm run build
       - name: Deploy to Firebase
