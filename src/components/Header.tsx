@@ -19,12 +19,16 @@ export const Header = () => {
   };
 
   return (
-    <AppBar position="sticky" className={styles.appBar}>
-      <IconButton color="inherit" onClick={handleHomeIconClick}>
-        <HomeOutlined />
-      </IconButton>
-      <Toolbar className={styles.toolBar}>
-        <Typography variant="h6" onClick={handleTitleClick}>
+    <AppBar position="sticky">
+      <Toolbar className={styles.toolBar} variant="dense">
+        <IconButton color="inherit" onClick={handleHomeIconClick}>
+          <HomeOutlined />
+        </IconButton>
+        <Typography
+          className={styles.typography}
+          variant="h6"
+          onClick={handleTitleClick}
+        >
           Schnelle Stimme
         </Typography>
       </Toolbar>
@@ -33,12 +37,12 @@ export const Header = () => {
 };
 
 const useStyles = makeStyles({
-  appBar: {
-    padding: '0px 8px',
+  toolBar: {
     display: 'grid',
     gridTemplateColumns: '48px 1fr 48px',
   },
-  toolBar: {
+  typography: {
+    cursor: 'pointer',
     margin: 'auto',
   },
 });
