@@ -17,11 +17,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Test
-        run: npm test
+        run: npm run test
         env:
           CI: true
       - name: Build
-        run: npm build
+        run: npm run build
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
