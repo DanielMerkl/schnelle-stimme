@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { routes } from '../utils/routes';
 import { HomePage } from '../page/home/HomePage';
@@ -25,5 +25,6 @@ export const Content = () => (
     <Route path={routes.result}>
       <ResultPage />
     </Route>
+    <Redirect to={routes.home} />
   </Switch>
 );
