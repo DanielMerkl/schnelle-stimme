@@ -7,6 +7,9 @@ import { PollPage } from '../page/poll/PollPage';
 import { CreatePollPage } from '../page/createPoll/CreatePollPage';
 import { JoinPollPage } from '../page/joinPoll/JoinPollPage';
 import { ResultPage } from '../page/result/ResultPage';
+import { ImprintPage } from '../page/imprint/ImprintPage';
+import { PrivacyPage } from '../page/privacy/PrivacyPage';
+import { TermsPage } from '../page/terms/TermsPage';
 
 export const Content: FC = () => (
   <Switch>
@@ -24,6 +27,15 @@ export const Content: FC = () => (
     </Route>
     <Route path={routes.result}>
       <ResultPage />
+    </Route>
+    <Route path={routes.imprint}>
+      <ImprintPage />
+    </Route>
+    <Route path={routes.privacy}>
+      <PrivacyPage />
+    </Route>
+    <Route path={routes.terms}>
+      <TermsPage />
     </Route>
     <Redirect to={routes.home} />
   </Switch>
