@@ -34,7 +34,7 @@ const LinksWrapper = styled.div`
     grid-template-columns: auto auto;
   }
   @media (max-width: 400px) {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
   }
 `;
 
