@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import { App } from './App';
 import * as serviceWorker from './serviceWorker';
+import { CombinedProviders } from './components/CombinedProviders';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <CombinedProviders>
       <App />
-    </BrowserRouter>
+    </CombinedProviders>
   </React.StrictMode>,
   document.getElementById('root')
 );
