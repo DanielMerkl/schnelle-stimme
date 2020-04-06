@@ -1,5 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components';
 
-const App = () => <h1>webhook test 3</h1>;
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { Content } from './components/Content';
 
-export default App;
+export const App: FC = () => (
+  <AppWrapper>
+    <Header />
+    <Content />
+    <Footer />
+  </AppWrapper>
+);
+
+const AppWrapper = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+`;
