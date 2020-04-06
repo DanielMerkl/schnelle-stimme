@@ -6,22 +6,22 @@ import styled from 'styled-components';
 import { routes } from '../utils/routes';
 
 export const Footer: FC = () => (
-  <Wrapper>
-    <GridWrapper>
+  <StyledFooter>
+    <LinksWrapper>
       <FooterLink to={routes.imprint}>Impressum</FooterLink>
       <FooterLink to={routes.privacy}>Datenschutzrichtlinien</FooterLink>
       <FooterLink to={routes.terms}>Nutzungsbedingungen</FooterLink>
       <Typography color="textSecondary">Copyright © 2020</Typography>
-    </GridWrapper>
-  </Wrapper>
+    </LinksWrapper>
+  </StyledFooter>
 );
 
-const Wrapper = styled.footer`
+const StyledFooter = styled.footer`
   background-color: #f5f5f5;
   padding: 8px 16px;
 `;
 
-const GridWrapper = styled.div`
+const LinksWrapper = styled.div`
   max-width: 800px;
   margin: auto;
   display: grid;
