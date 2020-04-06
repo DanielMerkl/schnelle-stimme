@@ -4,4 +4,7 @@ export const routes = {
   createPoll: '/create-poll',
   joinPoll: '/join-poll',
   result: '/result',
+  imprint: '/imprint',
+  terms: '/terms',
+  privacy: '/privacy',
 };
