@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { HomeOutlined } from '@material-ui/icons';
@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import { routes } from '../utils/routes';
 
-export const Header = () => {
+export const Header: FC = () => {
   const styles = useStyles();
   const history = useHistory();
 

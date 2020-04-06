@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Content } from './components/Content';
 
-export const App = () => {
+export const App: FC = () => {
   const styles = useStyles();
 
   return (

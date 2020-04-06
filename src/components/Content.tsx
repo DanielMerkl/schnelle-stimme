@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { routes } from '../utils/routes';
@@ -8,7 +8,7 @@ import { CreatePollPage } from '../page/createPoll/CreatePollPage';
 import { JoinPollPage } from '../page/joinPoll/JoinPollPage';
 import { ResultPage } from '../page/result/ResultPage';
 
-export const Content = () => (
+export const Content: FC = () => (
   <Switch>
     <Route path={routes.home} exact>
       <HomePage />
