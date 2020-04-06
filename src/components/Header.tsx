@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
 import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { HomeOutlined } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { routes } from '../utils/routes';
 
 export const Header: FC = () => {
-  const styles = useStyles();
   const history = useHistory();
 
   const handleHomeIconClick = () => {
@@ -20,29 +19,24 @@ export const Header: FC = () => {
 
   return (
     <AppBar position="sticky">
-      <Toolbar className={styles.toolBar} variant="dense">
+      <StyledToolbar variant="dense">
         <IconButton color="inherit" onClick={handleHomeIconClick}>
           <HomeOutlined />
         </IconButton>
-        <Typography
-          className={styles.typography}
-          variant="h6"
-          onClick={handleTitleClick}
-        >
+        <StyledTypography variant="h6" onClick={handleTitleClick}>
           Schnelle Stimme
-        </Typography>
-      </Toolbar>
+        </StyledTypography>
+      </StyledToolbar>
     </AppBar>
   );
 };
 
-const useStyles = makeStyles({
-  toolBar: {
-    display: 'grid',
-    gridTemplateColumns: '48px 1fr 48px',
-  },
-  typography: {
-    cursor: 'pointer',
-    margin: 'auto',
-  },
-});
+const StyledToolbar = styled(Toolbar)`
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+`;
+
+const StyledTypography = styled(Typography)`
+  cursor: pointer;
+  margin: auto;
+`;

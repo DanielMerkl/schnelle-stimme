@@ -1,26 +1,20 @@
 import React, { FC } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Content } from './components/Content';
 
-export const App: FC = () => {
-  const styles = useStyles();
+export const App: FC = () => (
+  <AppWrapper>
+    <Header />
+    <Content />
+    <Footer />
+  </AppWrapper>
+);
 
-  return (
-    <div className={styles.wrapper}>
-      <Header />
-      <Content />
-      <Footer />
-    </div>
-  );
-};
-
-const useStyles = makeStyles({
-  wrapper: {
-    height: '100vh',
-    display: 'grid',
-    gridTemplateRows: 'auto 1fr auto',
-  },
-});
+const AppWrapper = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+`;
