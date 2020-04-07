@@ -18,7 +18,7 @@ export const Header: FC = () => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="static">
       <StyledToolbar variant="dense">
         <IconButton color="inherit" onClick={handleHomeIconClick}>
           <HomeOutlined />
