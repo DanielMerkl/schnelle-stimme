@@ -1,0 +1,23 @@
+name: Continuous Integration (DEV)
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test-pull-request:
+    name: Check Pull Request
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+        with:
+          ref: develop
+      - name: Install Dependencies
+        run: npm ci
+      - name: Test
+        run: npm run test
+        env:
+          CI: true
+      - name: Build
+        run: npm run build
