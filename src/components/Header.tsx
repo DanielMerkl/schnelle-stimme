@@ -29,7 +29,7 @@ export const Header: FC = () => {
           <HomeOutlined />
         </IconButton>
         <StyledTypography variant="h6" onClick={handleTitleClick}>
-          Cache Test Schnelle Stimme{stageInfo}
+          Cache Test 2 Schnelle Stimme{stageInfo}
         </StyledTypography>
       </StyledToolbar>
     </AppBar>
