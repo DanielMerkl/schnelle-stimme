@@ -1,24 +1,18 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 import { HomeOutlined } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { routes } from '../utils/routes';
-import { Firebase } from '../Firebase';
 
 export const Header: FC = () => {
   const history = useHistory();
 
-  useEffect(() => {
-    console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
-    console.log('process.env.REACT_APP_STAGE: ', process.env.REACT_APP_STAGE);
-    Firebase.auth()
-      .signInAnonymously()
-      .then((user) => {
-        console.log('user: ', user);
-      });
-  }, []);
+  let stageInfo = '';
+  if (process.env.REACT_APP_STAGE !== 'production') {
+    stageInfo = ' (dev)';
+  }
 
   const handleHomeIconClick = () => {
     history.push(routes.home);
@@ -29,13 +23,13 @@ export const Header: FC = () => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="static">
       <StyledToolbar variant="dense">
         <IconButton color="inherit" onClick={handleHomeIconClick}>
           <HomeOutlined />
         </IconButton>
         <StyledTypography variant="h6" onClick={handleTitleClick}>
-          Schnelle Stimme (Stage: {process.env.REACT_APP_STAGE})
+          Schnelle Stimme{stageInfo}
         </StyledTypography>
       </StyledToolbar>
     </AppBar>
