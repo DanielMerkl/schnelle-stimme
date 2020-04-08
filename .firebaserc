@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "schnelle-stimme"
+    "default": "schnelle-stimme",
+    "dev": "schnelle-stimme-dev"
   }
 }

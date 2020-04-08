@@ -1,4 +1,4 @@
-name: CI
+name: Continuous Delivery (PROD)
 on:
   push:
     branches:
@@ -6,22 +6,24 @@ on:
 
 jobs:
   firebase-deploy:
-    name: Build and Deploy to Firebase
+    name: Build and Deploy to Firebase (PROD)
     runs-on: [ubuntu-latest]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
       - name: Test
         run: npm run test
         env:
           CI: true
       - name: Build
         run: npm run build
+        env:
+          REACT_APP_STAGE: production
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting -P default
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

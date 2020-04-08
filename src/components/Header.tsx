@@ -9,6 +9,11 @@ import { routes } from '../utils/routes';
 export const Header: FC = () => {
   const history = useHistory();
 
+  let stageInfo = '';
+  if (process.env.REACT_APP_STAGE !== 'production') {
+    stageInfo = ' (dev)';
+  }
+
   const handleHomeIconClick = () => {
     history.push(routes.home);
   };
@@ -24,7 +29,7 @@ export const Header: FC = () => {
           <HomeOutlined />
         </IconButton>
         <StyledTypography variant="h6" onClick={handleTitleClick}>
-          Schnelle Stimme
+          Schnelle Stimme{stageInfo}
         </StyledTypography>
       </StyledToolbar>
     </AppBar>
