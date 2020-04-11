@@ -7,7 +7,7 @@ on:
 jobs:
   firebase-deploy:
     name: Build and Deploy to Firebase (PROD)
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
