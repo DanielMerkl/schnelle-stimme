@@ -3,7 +3,10 @@ import { Button, TextField, Typography } from '@material-ui/core';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
 
-export const CreatePollCallToAction: FC = () => {
+export const PollCreationCallToAction: FC = () => {
+  // const { setInitialPollTopic } = useContext(PollCreationContext);
+  // const history = useHistory();
+  //
   const [topic, setTopic] = useState('');
 
   const handleTopicChange = (event: ChangeEvent<HTMLInputElement>) => {

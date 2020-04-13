@@ -3,7 +3,7 @@ import { Button, TextField, Typography } from '@material-ui/core';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
 
-export const JoinPollCallToAction: FC = () => {
+export const PollJoiningCallToAction: FC = () => {
   const [code, setCode] = useState('');
 
   const handleCodeChange = (event: ChangeEvent<HTMLInputElement>) => {

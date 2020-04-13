@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { CreatePollCallToAction } from './CreatePollCallToAction';
-import { JoinPollCallToAction } from './JoinPollCallToAction';
+import { PollCreationCallToAction } from './PollCreationCallToAction';
+import { PollJoiningCallToAction } from './PollJoiningCallToAction';
 
 export const CallToActions: FC = () => (
   <Wrapper>
-    <CreatePollCallToAction />
-    <JoinPollCallToAction />
+    <PollCreationCallToAction />
+    <PollJoiningCallToAction />
   </Wrapper>
 );
 
