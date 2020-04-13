@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 
 interface Props {
   svg: string;
@@ -30,7 +30,8 @@ interface WrapperProps {
   gridArea: string;
 }
 
-const Wrapper = styled.section<WrapperProps>`
+const Wrapper = styled(Paper)<WrapperProps>`
+  padding: 2rem;
   max-width: 400px;
   grid-area: ${(props) => props.gridArea};
   display: grid;
