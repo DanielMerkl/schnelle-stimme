@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FC, useState } from 'react';
-import { Button, TextField, Typography } from '@material-ui/core';
+import { Fab, TextField, Typography } from '@material-ui/core';
+import { ExitToApp } from '@material-ui/icons';
+import styled from 'styled-components';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
 
@@ -28,10 +30,16 @@ export const PollJoiningCallToAction: FC = () => {
         value={code}
         onChange={handleCodeChange}
         inputMode="numeric"
+        helperText=" "
       />
-      <Button variant="contained" color="primary" onClick={handleJoinClick}>
+      <Fab variant="extended" color="primary" onClick={handleJoinClick}>
+        <StyledIcon />
         beitreten
-      </Button>
+      </Fab>
     </CallToActionWrapper>
   );
 };
+
+const StyledIcon = styled(ExitToApp)`
+  margin-right: 0.5rem;
+`;

@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FC, useContext, useState } from 'react';
-import { Button, TextField, Typography } from '@material-ui/core';
+import { Fab, TextField, Typography } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
+import styled from 'styled-components';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
 import { PollCreationContext } from '../../context/PollCreationContext';
@@ -31,10 +33,16 @@ export const PollCreationCallToAction: FC = () => {
         label="Thema / Frage"
         value={topic}
         onChange={handleTopicChange}
+        helperText=" "
       />
-      <Button variant="contained" color="primary" onClick={handleCreateClick}>
+      <Fab variant="extended" color="primary" onClick={handleCreateClick}>
+        <StyledIcon />
         erstellen
-      </Button>
+      </Fab>
     </CallToActionWrapper>
   );
 };
+
+const StyledIcon = styled(Add)`
+  margin-right: 0.5rem;
+`;
