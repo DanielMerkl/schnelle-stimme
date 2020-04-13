@@ -12,7 +12,7 @@ export const PollCreationContext = createContext<PollCreationContext>({
   openWithInitialTopic: () => {},
 });
 
-export const CreatePollContextProvider: FC = ({ children }) => {
+export const PollCreationContextProvider: FC = ({ children }) => {
   const history = useHistory();
 
   const [initialTopic, setInitialTopic] = useState('');

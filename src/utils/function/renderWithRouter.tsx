@@ -5,7 +5,7 @@ import { render, RenderResult } from '@testing-library/react';
 import { StylesProvider, ThemeProvider } from '@material-ui/core';
 
 import { theme } from '../theme';
-import { CreatePollContextProvider } from '../../context/PollCreationContext';
+import { PollCreationContextProvider } from '../../context/PollCreationContext';
 
 interface RenderWithRouterResult extends RenderResult {
   history: MemoryHistory;
@@ -35,7 +35,9 @@ export const renderWithRouter = (
     <Router history={history}>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <CreatePollContextProvider>{reactElement}</CreatePollContextProvider>
+          <PollCreationContextProvider>
+            {reactElement}
+          </PollCreationContextProvider>
         </ThemeProvider>
       </StylesProvider>
     </Router>

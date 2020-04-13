@@ -3,14 +3,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { StylesProvider, ThemeProvider } from '@material-ui/core';
 
 import { theme } from '../utils/theme';
-import { CreatePollContextProvider } from '../context/PollCreationContext';
+import { PollCreationContextProvider } from '../context/PollCreationContext';
 
 export const CombinedProviders: FC = ({ children }) => {
   return (
     <BrowserRouter>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <CreatePollContextProvider>{children}</CreatePollContextProvider>
+          <PollCreationContextProvider>{children}</PollCreationContextProvider>
         </ThemeProvider>
       </StylesProvider>
     </BrowserRouter>
