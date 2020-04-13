@@ -17,7 +17,7 @@ export const UniqueSellingPoint: FC<Props> = ({
   headline,
   subtext,
 }) => (
-  <Wrapper gridArea={gridArea}>
+  <Wrapper gridarea={gridArea}>
     <StyledImg src={svg} alt={alt} />
     <Typography variant="h5" align="center">
       {headline}
@@ -27,13 +27,13 @@ export const UniqueSellingPoint: FC<Props> = ({
 );
 
 interface WrapperProps {
-  gridArea: string;
+  gridarea: string;
 }
 
 const Wrapper = styled(Paper)<WrapperProps>`
   padding: 2rem;
   max-width: 400px;
-  grid-area: ${(props) => props.gridArea};
+  grid-area: ${(props) => props.gridarea};
   display: grid;
   gap: 0.5rem;
   grid-template-rows: auto auto 1fr;
