@@ -16,11 +16,7 @@ export const PollCreationCallToAction: FC = () => {
   };
 
   const handleCreateClick = () => {
-    if (topic !== '') {
-      openWithInitialTopic(topic);
-    } else {
-      // TODO: implement error handling
-    }
+    openWithInitialTopic(topic);
   };
 
   return (
@@ -33,7 +29,7 @@ export const PollCreationCallToAction: FC = () => {
         label="Thema / Frage"
         value={topic}
         onChange={handleTopicChange}
-        helperText=" "
+        helperText=" " // empty helper text in order to align it with the other call to action
       />
       <Fab variant="extended" color="primary" onClick={handleCreateClick}>
         <StyledIcon />
