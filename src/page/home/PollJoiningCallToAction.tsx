@@ -7,16 +7,25 @@ import { CallToActionWrapper } from './CallToActionWrapper';
 
 export const PollJoiningCallToAction: FC = () => {
   const [code, setCode] = useState('');
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState(' ');
 
   const handleCodeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const updatedCode = event.target.value;
     if (!Number.isNaN(Number(updatedCode)) && updatedCode.length <= 5) {
+      setError(false);
+      setHelperText(' ');
       setCode(updatedCode);
     }
   };
 
   const handleJoinClick = () => {
-    // TODO implementieren
+    if (code.length === 5) {
+      // TODO: trigger join mechanism
+    } else {
+      setError(true);
+      setHelperText('Der Code ist nicht 5-stellig.');
+    }
   };
 
   return (
@@ -30,7 +39,8 @@ export const PollJoiningCallToAction: FC = () => {
         value={code}
         onChange={handleCodeChange}
         inputMode="numeric"
-        helperText=" "
+        error={error}
+        helperText={helperText}
       />
       <Fab variant="extended" color="primary" onClick={handleJoinClick}>
         <StyledIcon />
