@@ -1,12 +1,12 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useContext, useState } from 'react';
 import { Button, TextField, Typography } from '@material-ui/core';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
+import { PollCreationContext } from '../../context/PollCreationContext';
 
 export const PollCreationCallToAction: FC = () => {
-  // const { setInitialPollTopic } = useContext(PollCreationContext);
-  // const history = useHistory();
-  //
+  const { openWithInitialTopic } = useContext(PollCreationContext);
+
   const [topic, setTopic] = useState('');
 
   const handleTopicChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +14,11 @@ export const PollCreationCallToAction: FC = () => {
   };
 
   const handleCreateClick = () => {
-    // TODO: implementieren
+    if (topic !== '') {
+      openWithInitialTopic(topic);
+    } else {
+      // TODO: implement error handling
+    }
   };
 
   return (
