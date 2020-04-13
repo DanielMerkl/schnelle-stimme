@@ -51,7 +51,7 @@ const Wrapper = styled.div`
       'first second'
       'third third';
   }
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     grid-template-columns: 1fr;
     grid-template-areas:
       'first'

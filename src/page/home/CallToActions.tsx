@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   display: grid;
   gap: 5rem;
   grid-template-columns: 1fr 1fr;
-  @media (max-width: 720px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr;
   }
 `;
