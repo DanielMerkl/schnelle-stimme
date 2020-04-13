@@ -1,51 +1,15 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { CallToAction } from './CallToAction';
+import { CreatePollCallToAction } from './CreatePollCallToAction';
+import { JoinPollCallToAction } from './JoinPollCallToAction';
 
-export const CallToActions: FC = () => {
-  const [topic, setTopic] = useState('');
-  const [code, setCode] = useState('');
-
-  const handleTopicChange = (updatedTopic: string) => {
-    setTopic(updatedTopic);
-  };
-
-  const handleCreateClick = () => {
-    // TODO: implementieren
-  };
-
-  const handleCodeChange = (updatedCode: string) => {
-    if (!Number.isNaN(Number(updatedCode)) && updatedCode.length <= 5) {
-      setCode(updatedCode);
-    }
-  };
-
-  const handleJoinClick = () => {
-    // TODO implementieren
-  };
-
-  return (
-    <Wrapper>
-      <CallToAction
-        headline="Erstelle eine neue Umfrage"
-        inputLabel="Thema / Frage"
-        inputValue={topic}
-        onChange={handleTopicChange}
-        buttonText="erstellen"
-        onClick={handleCreateClick}
-      />
-      <CallToAction
-        headline="Trete einer Umfrage bei"
-        inputValue={code}
-        inputLabel="5-stelliger Code"
-        onChange={handleCodeChange}
-        buttonText="beitreten"
-        onClick={handleJoinClick}
-      />
-    </Wrapper>
-  );
-};
+export const CallToActions: FC = () => (
+  <Wrapper>
+    <CreatePollCallToAction />
+    <JoinPollCallToAction />
+  </Wrapper>
+);
 
 const Wrapper = styled.div`
   max-width: 1000px;
