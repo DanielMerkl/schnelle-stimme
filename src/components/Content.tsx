@@ -22,9 +22,6 @@ export const Content: FC = () => (
     <Route path={routes.createPoll}>
       <CreatePollPage />
     </Route>
-    <Route path={routes.joinPoll}>
-      <JoinPollPage />
-    </Route>
     <Route path={routes.result}>
       <ResultPage />
     </Route>
