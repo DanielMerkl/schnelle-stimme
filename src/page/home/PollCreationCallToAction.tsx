@@ -23,7 +23,7 @@ export const PollCreationCallToAction: FC = () => {
 
   const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
-      openWithInitialTopic(topic);
+      handleCreateClick();
     }
   };
 

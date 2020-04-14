@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
 import { Fab, TextField, Typography } from '@material-ui/core';
 import { ExitToApp } from '@material-ui/icons';
 import styled from 'styled-components';
@@ -16,6 +16,12 @@ export const PollJoiningCallToAction: FC = () => {
       setError(false);
       setHelperText(' ');
       setCode(updatedCode);
+    }
+  };
+
+  const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') {
+      handleJoinClick();
     }
   };
 
@@ -41,6 +47,7 @@ export const PollJoiningCallToAction: FC = () => {
         inputMode="numeric"
         error={error}
         helperText={helperText}
+        onKeyPress={handleKeyPress}
       />
       <Fab variant="extended" color="primary" onClick={handleJoinClick}>
         <StyledIcon />
