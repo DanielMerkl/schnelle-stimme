@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FC, useContext, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  useContext,
+  useState,
+  KeyboardEvent,
+} from 'react';
 import { Fab, TextField, Typography } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import styled from 'styled-components';
@@ -13,6 +19,12 @@ export const PollCreationCallToAction: FC = () => {
 
   const handleTopicChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTopic(event.target.value);
+  };
+
+  const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') {
+      openWithInitialTopic(topic);
+    }
   };
 
   const handleCreateClick = () => {
@@ -30,6 +42,7 @@ export const PollCreationCallToAction: FC = () => {
         value={topic}
         onChange={handleTopicChange}
         helperText=" " // empty helper text in order to align it with the other call to action
+        onKeyPress={handleKeyPress}
       />
       <Fab variant="extended" color="primary" onClick={handleCreateClick}>
         <StyledIcon />
