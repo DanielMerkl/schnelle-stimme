@@ -21,11 +21,11 @@ export const PollJoiningCallToAction: FC = () => {
 
   const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
-      handleJoinClick();
+      submit();
     }
   };
 
-  const handleJoinClick = () => {
+  const submit = () => {
     if (code.length === 5) {
       // TODO: trigger join mechanism
     } else {
@@ -49,7 +49,7 @@ export const PollJoiningCallToAction: FC = () => {
         helperText={helperText}
         onKeyPress={handleKeyPress}
       />
-      <Fab variant="extended" color="primary" onClick={handleJoinClick}>
+      <Fab variant="extended" color="primary" onClick={submit}>
         <StyledIcon />
         beitreten
       </Fab>

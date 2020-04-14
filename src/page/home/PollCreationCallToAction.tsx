@@ -23,11 +23,11 @@ export const PollCreationCallToAction: FC = () => {
 
   const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
-      handleCreateClick();
+      submit();
     }
   };
 
-  const handleCreateClick = () => {
+  const submit = () => {
     openWithInitialTopic(topic);
   };
 
@@ -43,8 +43,9 @@ export const PollCreationCallToAction: FC = () => {
         onChange={handleTopicChange}
         helperText=" " // empty helper text in order to align it with the other call to action
         onKeyPress={handleKeyPress}
+        inputProps={{ 'data-testid': 'topic-input' }}
       />
-      <Fab variant="extended" color="primary" onClick={handleCreateClick}>
+      <Fab variant="extended" color="primary" onClick={submit}>
         <StyledIcon />
         erstellen
       </Fab>
