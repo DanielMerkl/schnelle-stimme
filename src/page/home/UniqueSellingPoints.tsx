@@ -2,13 +2,15 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 import { UniqueSellingPoint } from './UniqueSellingPoint';
-import dickButt from '../../assets/dick-butt.svg';
+import speed from '../../assets/speed.svg';
+import money_off from '../../assets/money_off.svg';
+import mood from '../../assets/mood.svg';
 
 export const UniqueSellingPoints: FC = () => (
   <Wrapper>
     <UniqueSellingPoint
-      svg={dickButt}
-      alt="Dick Butt"
+      svg={speed}
+      alt="Tachometer"
       gridArea="first"
       headline="Schnell"
       subtext="
@@ -17,8 +19,8 @@ export const UniqueSellingPoints: FC = () => (
       "
     />
     <UniqueSellingPoint
-      svg={dickButt}
-      alt="Dick Butt"
+      svg={money_off}
+      alt="Durchgestrichenes Dollar-Zeichen"
       gridArea="second"
       headline="Kostenlos"
       subtext="
@@ -27,8 +29,8 @@ export const UniqueSellingPoints: FC = () => (
       "
     />
     <UniqueSellingPoint
-      svg={dickButt}
-      alt="Dick Butt"
+      svg={mood}
+      alt="Lachender Smiley"
       gridArea="third"
       headline="Unkompliziert"
       subtext="
