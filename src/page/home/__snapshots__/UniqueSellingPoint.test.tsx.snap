@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UniqueSellingPoint renders correctly 1`] = `
+<div>
+  <div
+    class="MuiPaper-root sc-AxjAm eimCaO MuiPaper-elevation1 MuiPaper-rounded"
+    gridarea="first"
+  >
+    <img
+      alt="Description of the picture."
+      class="sc-AxirZ hyvKOs"
+      src="picture.svg"
+    />
+    <h5
+      class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter"
+    >
+      Banana
+    </h5>
+    <p
+      class="MuiTypography-root MuiTypography-body1 MuiTypography-alignCenter"
+    >
+      Bananas are not always crooked.
+    </p>
+  </div>
+</div>
+`;
