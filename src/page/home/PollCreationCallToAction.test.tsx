@@ -13,6 +13,13 @@ describe('PollCreationCallToAction', () => {
     expect(headline).toBeInTheDocument();
   });
 
+  it('renders a submit button', () => {
+    const { getByText } = render(<PollCreationCallToAction />);
+    const submitButton = getByText('erstellen');
+
+    expect(submitButton).toBeInTheDocument();
+  });
+
   // TODO: activate after implementing topic input in poll creation page
   xit('it forwards the current topic to the creation page after clicking on the submit button', async () => {
     const { getByText, getByTestId, history } = renderWithRouter(<App />);
