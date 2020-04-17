@@ -48,6 +48,7 @@ export const PollJoiningCallToAction: FC = () => {
         error={error}
         helperText={helperText}
         onKeyPress={handleKeyPress}
+        inputProps={{ 'data-testid': 'code-input' }}
       />
       <Fab variant="extended" color="primary" onClick={submit}>
         <StyledIcon />
