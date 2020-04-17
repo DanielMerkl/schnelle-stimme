@@ -12,7 +12,7 @@ export const HomePage: FC = () => (
         3.. 2.. 1.. Abgestimmt!
       </Typography>
       <Typography align="center">
-        Der schnellste Weg, eine anonyme Umfrage zu machen.
+        Der schnellste Weg, eine Umfrage zu machen.
       </Typography>
     </section>
     <CallToActions />

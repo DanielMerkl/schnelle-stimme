@@ -13,9 +13,7 @@ describe('HomePage', () => {
 
   it('renders the subtext', () => {
     const { getByText } = render(<HomePage />);
-    const subtext = getByText(
-      'Der schnellste Weg, eine anonyme Umfrage zu machen.'
-    );
+    const subtext = getByText('Der schnellste Weg, eine Umfrage zu machen.');
 
     expect(subtext).toBeInTheDocument();
   });
