@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+
 import { PollCreationCallToAction } from './PollCreationCallToAction';
 import { renderWithRouter } from '../../utils/function/renderWithRouter';
 import { routes } from '../../utils/routes';
