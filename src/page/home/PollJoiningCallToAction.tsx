@@ -4,6 +4,7 @@ import { ExitToApp } from '@material-ui/icons';
 import styled from 'styled-components';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
+import { messages } from './utils/messages';
 
 export const PollJoiningCallToAction: FC = () => {
   const [code, setCode] = useState('');
@@ -30,7 +31,7 @@ export const PollJoiningCallToAction: FC = () => {
       // TODO: trigger join mechanism
     } else {
       setError(true);
-      setHelperText('Der Code ist nicht 5-stellig.');
+      setHelperText(messages.error.codeIsNotFiveDigits);
     }
   };
 
