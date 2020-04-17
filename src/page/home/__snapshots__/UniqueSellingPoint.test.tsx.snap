@@ -2,14 +2,13 @@
 
 exports[`UniqueSellingPoint renders correctly 1`] = `
 <div>
-  <div
-    class="MuiPaper-root sc-AxjAm eimCaO MuiPaper-elevation1 MuiPaper-rounded"
-    gridarea="first"
+  <section
+    class="sc-AxjAm tMgsQ"
   >
     <img
       alt="Description of the picture."
-      class="sc-AxirZ hyvKOs"
       src="picture.svg"
+      width="64px"
     />
     <h5
       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter"
@@ -21,6 +20,6 @@ exports[`UniqueSellingPoint renders correctly 1`] = `
     >
       Bananas are not always crooked.
     </p>
-  </div>
+  </section>
 </div>
 `;
