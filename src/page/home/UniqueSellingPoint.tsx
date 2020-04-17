@@ -18,7 +18,7 @@ export const UniqueSellingPoint: FC<Props> = ({
   subtext,
 }) => (
   <Wrapper gridarea={gridArea}>
-    <StyledImg src={svg} alt={alt} width="64px" />
+    <img src={svg} alt={alt} width="64px" />
     <Typography variant="h5" align="center">
       {headline}
     </Typography>
@@ -38,8 +38,4 @@ const Wrapper = styled.section<WrapperProps>`
   gap: 1rem;
   grid-template-rows: auto auto 1fr;
   justify-items: center;
-`;
-
-const StyledImg = styled.img`
-  max-width: 150px;
 `;
