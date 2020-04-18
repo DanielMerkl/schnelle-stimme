@@ -40,10 +40,10 @@ export const PollCreationCallToAction: FC = () => {
         variant="outlined"
         label="Thema / Frage"
         value={topic}
+        id="initial-topic"
         onChange={handleTopicChange}
         helperText=" " // empty helper text in order to align it with the other call to action
         onKeyPress={handleKeyPress}
-        inputProps={{ 'data-testid': 'topic-input' }}
       />
       <Fab variant="extended" color="primary" onClick={submit}>
         <StyledIcon />

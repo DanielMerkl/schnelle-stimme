@@ -44,12 +44,12 @@ export const PollJoiningCallToAction: FC = () => {
         variant="outlined"
         label="5-stelliger Code"
         value={code}
+        id="code"
         onChange={handleCodeChange}
         inputMode="numeric"
         error={error}
         helperText={helperText}
         onKeyPress={handleKeyPress}
-        inputProps={{ 'data-testid': 'code-input' }}
       />
       <Fab variant="extended" color="primary" onClick={submit}>
         <StyledIcon />

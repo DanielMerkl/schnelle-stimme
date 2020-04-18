@@ -20,8 +20,8 @@ describe('PollJoiningCallToAction', () => {
   });
 
   it('shows error message if code is too short', () => {
-    const { getByTestId, getByText } = render(<PollJoiningCallToAction />);
-    const codeInput = getByTestId('code-input');
+    const { getByLabelText, getByText } = render(<PollJoiningCallToAction />);
+    const codeInput = getByLabelText('5-stelliger Code');
     const submitButton = getByText('beitreten');
 
     fireEvent.change(codeInput, { target: { value: '123' } });
@@ -32,10 +32,10 @@ describe('PollJoiningCallToAction', () => {
   });
 
   it('hides error message when user is typing', () => {
-    const { getByTestId, getByText, queryByText } = render(
+    const { getByLabelText, getByText, queryByText } = render(
       <PollJoiningCallToAction />
     );
-    const codeInput = getByTestId('code-input');
+    const codeInput = getByLabelText('5-stelliger Code');
     const submitButton = getByText('beitreten');
 
     fireEvent.click(submitButton);
