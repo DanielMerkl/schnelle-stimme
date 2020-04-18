@@ -8,4 +8,7 @@ export const CallToActionWrapper = styled(Paper)`
   gap: 1rem;
   grid-template-columns: minmax(min-content, 400px);
   grid-template-rows: 1fr auto auto;
+  @media (max-width: 400px) {
+    padding: 2rem;
+  }
 `;

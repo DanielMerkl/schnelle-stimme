@@ -23,7 +23,7 @@ export const HomePage: FC = () => (
 const Wrapper = styled.main`
   max-width: var(--max-app-width);
   margin: 0 auto;
-  padding: 3rem 2rem 5rem 2rem;
+  padding: 3rem 1rem 5rem 1rem;
   display: grid;
   gap: 5rem;
 `;
