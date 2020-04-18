@@ -21,30 +21,35 @@ describe('PollCreationCallToAction', () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  // TODO: activate after implementing topic input in poll creation page
-  xit('it forwards the current topic to the creation page after clicking on the submit button', async () => {
-    const { getByText, getByTestId, history } = renderWithRouter(<App />);
+  it('it forwards the current topic to the creation page after clicking on the submit button', () => {
+    const {
+      getByText,
+      getByLabelText,
+      getByDisplayValue,
+      history,
+    } = renderWithRouter(<App />);
     const submitButton = getByText('erstellen');
-    const topicInput = getByTestId('topic-input');
+    const topicInput = getByLabelText('Thema / Frage');
 
-    fireEvent.change(topicInput, { target: { value: 'Banane' } });
+    fireEvent.change(topicInput, { target: { value: 'Banana' } });
     fireEvent.click(submitButton);
 
     expect(history.location.pathname).toEqual(routes.creation);
-    const initialTopicInput = getByText('Bananen');
+    const initialTopicInput = getByDisplayValue('Banana');
     expect(initialTopicInput).toBeInTheDocument();
   });
 
-  // TODO: activate after implementing topic input in poll creation page
-  xit('it forwards the current topic to the creation page after pressing the enter key', async () => {
-    const { getByText, getByTestId, history } = renderWithRouter(<App />);
-    const topicInput = getByTestId('topic-input');
+  it('it forwards the current topic to the creation page after pressing the enter key', () => {
+    const { getByDisplayValue, getByLabelText, history } = renderWithRouter(
+      <App />
+    );
+    const topicInput = getByLabelText('Thema / Frage');
 
-    fireEvent.change(topicInput, { target: { value: 'Banane' } });
-    fireEvent.keyPress(topicInput, { key: 'Enter' });
+    fireEvent.change(topicInput, { target: { value: 'Banana' } });
+    fireEvent.keyPress(topicInput, { key: 'Enter', charCode: 13 });
 
     expect(history.location.pathname).toEqual(routes.creation);
-    const initialTopicInput = getByText('Bananen');
+    const initialTopicInput = getByDisplayValue('Banana');
     expect(initialTopicInput).toBeInTheDocument();
   });
 });
