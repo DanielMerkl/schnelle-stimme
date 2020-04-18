@@ -6,12 +6,13 @@ import { App } from './App';
 import * as serviceWorker from './serviceWorker';
 import { CombinedProviders } from './components/CombinedProviders';
 
+// TODO: reactivate StrictMode when material-ui fixed problems with StrictMode
 ReactDOM.render(
-  <React.StrictMode>
-    <CombinedProviders>
-      <App />
-    </CombinedProviders>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <CombinedProviders>
+    <App />
+  </CombinedProviders>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
