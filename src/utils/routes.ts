@@ -1,8 +1,8 @@
 export const routes = {
   home: '/',
   poll: '/poll',
-  createPoll: '/create-poll',
-  joinPoll: '/join-poll',
+  creation: '/creation',
+  joining: '/joining',
   result: '/result',
   imprint: '/imprint',
   terms: '/terms',
