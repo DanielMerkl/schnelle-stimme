@@ -16,9 +16,9 @@ export const PollTypeSelection: FC<Props> = ({ value, onChange }) => {
 
   return (
     <FormControl variant="outlined" fullWidth>
-      <InputLabel id="poll-type-label">Typ</InputLabel>
+      <InputLabel id="poll-type-label">Art der Umfrage</InputLabel>
       <Select
-        label="Typ"
+        label="Art der Umfrage"
         labelId="poll-type-label"
         id="poll-type"
         variant="outlined"
