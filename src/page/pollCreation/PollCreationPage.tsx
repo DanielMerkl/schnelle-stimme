@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import { TextField, Typography } from '@material-ui/core';
 
 import { PollCreationContext } from '../../context/PollCreationContext';
 import { TopicInput } from './TopicInput';
@@ -11,6 +11,7 @@ export const PollCreationPage: FC = () => {
   const { initialTopic } = useContext(PollCreationContext);
 
   const [topic, setTopic] = useState<string>(initialTopic);
+  const [description, setDescription] = useState('');
   const [pollType, setPollType] = useState<PollType>(PollType.SINGLE_CHOICE);
 
   useEffect(() => {
@@ -23,6 +24,14 @@ export const PollCreationPage: FC = () => {
         Umfrage erstellen
       </Typography>
       <TopicInput value={topic} onChange={setTopic} />
+      <TextField
+        id="description"
+        label="Beschreibung"
+        variant="outlined"
+        multiline
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <PollTypeSelection value={pollType} onChange={setPollType} />
     </Wrapper>
   );
