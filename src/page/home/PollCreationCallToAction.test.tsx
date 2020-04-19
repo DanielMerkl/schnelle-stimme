@@ -5,7 +5,7 @@ import { PollCreationCallToAction } from './PollCreationCallToAction';
 import { renderWithRouter } from '../../utils/function/renderWithRouter';
 import { routes } from '../../utils/routes';
 import { App } from '../../App';
-import { keyboardEnterKeyMock } from '../../utils/keyboardEnterKeyMock';
+import { keyboardEventMock } from '../../utils/keyboardEventMock';
 
 describe('PollCreationCallToAction', () => {
   it('renders the correct headline', () => {
@@ -47,7 +47,7 @@ describe('PollCreationCallToAction', () => {
     const topicInput = getByLabelText('Thema / Frage');
 
     fireEvent.change(topicInput, { target: { value: 'Banana' } });
-    fireEvent.keyPress(topicInput, keyboardEnterKeyMock);
+    fireEvent.keyPress(topicInput, keyboardEventMock.enter);
 
     expect(history.location.pathname).toEqual(routes.creation);
     const initialTopicInput = getByDisplayValue('Banana');
