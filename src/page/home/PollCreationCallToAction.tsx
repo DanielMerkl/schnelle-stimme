@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
 import { PollCreationContext } from '../../context/PollCreationContext';
+import { isEnterKey } from '../../utils/function/isEnterKey';
 
 export const PollCreationCallToAction: FC = () => {
   const { openWithInitialTopic } = useContext(PollCreationContext);
@@ -22,7 +23,7 @@ export const PollCreationCallToAction: FC = () => {
   };
 
   const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter') {
+    if (isEnterKey(event)) {
       submit();
     }
   };
