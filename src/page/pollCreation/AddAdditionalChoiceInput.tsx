@@ -81,7 +81,17 @@ export const AddAdditionalChoiceInput: FC<Props> = ({
       };
       setChoices((prevState) => [...prevState, additionalChoice]);
       setChoiceText('');
+      scrollDownAfterSubmit();
     }
+  };
+
+  const scrollDownAfterSubmit = () => {
+    const textFieldHeight = 56;
+    const gridGap = 16;
+    window.scrollBy({
+      top: textFieldHeight + gridGap,
+      behavior: 'smooth',
+    });
   };
 
   return (
