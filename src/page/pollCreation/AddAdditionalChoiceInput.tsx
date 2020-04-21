@@ -85,46 +85,52 @@ export const AddAdditionalChoiceInput: FC<Props> = ({
   };
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
-      {isTyping ? (
-        <TextFieldIconButtonWrapper>
-          <TextField
-            id="additional-choice"
-            label="zusätzliche Antwort"
-            inputRef={inputRef}
+    <Wrapper>
+      <ClickAwayListener onClickAway={handleClickAway}>
+        {isTyping ? (
+          <TextFieldIconButtonWrapper>
+            <TextField
+              id="additional-choice"
+              label="zusätzliche Antwort"
+              inputRef={inputRef}
+              variant="outlined"
+              fullWidth
+              autoFocus
+              InputLabelProps={{ shrink: true }}
+              value={choiceText}
+              error={error}
+              helperText={helperText}
+              onChange={handleChoiceTextChange}
+              onKeyDown={handleKeyDown}
+            />
+            <StyledAddIconButton
+              aria-label="hinzufügen"
+              onClick={handleAddIconButtonClick}
+            >
+              <Add />
+            </StyledAddIconButton>
+          </TextFieldIconButtonWrapper>
+        ) : (
+          <StyledButton
             variant="outlined"
+            color="primary"
+            size="large"
             fullWidth
-            autoFocus
-            InputLabelProps={{ shrink: true }}
-            value={choiceText}
-            error={error}
-            helperText={helperText}
-            onChange={handleChoiceTextChange}
-            onKeyDown={handleKeyDown}
-          />
-          <StyledAddIconButton
-            aria-label="hinzufügen"
-            onClick={handleAddIconButtonClick}
+            onClick={handleAddAdditionalChoiceButtonClick}
+            disableRipple
           >
-            <Add />
-          </StyledAddIconButton>
-        </TextFieldIconButtonWrapper>
-      ) : (
-        <StyledButton
-          variant="outlined"
-          color="primary"
-          size="large"
-          fullWidth
-          onClick={handleAddAdditionalChoiceButtonClick}
-          disableRipple
-        >
-          <StyledAddIcon />
-          zusätzliche Antwort
-        </StyledButton>
-      )}
-    </ClickAwayListener>
+            <StyledAddIcon />
+            zusätzliche Antwort
+          </StyledButton>
+        )}
+      </ClickAwayListener>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  height: 78px;
+`;
 
 const StyledAddIcon = styled(Add)`
   margin-right: 0.5rem;
