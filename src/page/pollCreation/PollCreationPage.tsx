@@ -1,6 +1,7 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Divider, TextField, Typography } from '@material-ui/core';
+import { Divider, Fab, TextField, Typography } from '@material-ui/core';
+import { Publish } from '@material-ui/icons';
 
 import { PollCreationContext } from '../../context/PollCreationContext';
 import { TopicInput } from './TopicInput';
@@ -22,6 +23,10 @@ export const PollCreationPage: FC = () => {
     setTopic(initialTopic);
   }, [initialTopic]);
 
+  const handlePublishClick = () => {
+    // TODO: implement validation
+  };
+
   return (
     <Wrapper>
       <Typography variant="h4">Umfrage erstellen</Typography>
@@ -39,15 +44,41 @@ export const PollCreationPage: FC = () => {
       <Typography variant="h5">Antwortmöglichkeiten</Typography>
       <Choices choices={choices} setChoices={setChoices} />
       <AddAdditionalChoiceInput choices={choices} setChoices={setChoices} />
+      <Divider />
+      <StyledFab
+        variant="extended"
+        color="primary"
+        size="large"
+        onClick={handlePublishClick}
+      >
+        <StyledPublishIcon />
+        veröffentlichen
+      </StyledFab>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.main`
   height: fit-content;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 8rem 1rem;
   display: grid;
   gap: 1rem;
   grid-template-columns: minmax(min-content, 600px);
   justify-content: center;
+  @media (max-width: 450px) {
+    padding: 2rem 1rem 2rem 1rem;
+  }
+`;
+
+const StyledFab = styled(Fab)`
+  max-width: 220px;
+  width: 100%;
+  justify-self: end;
+  @media (max-width: 450px) {
+    max-width: none;
+  }
+`;
+
+const StyledPublishIcon = styled(Publish)`
+  margin-right: 0.5rem;
 `;
