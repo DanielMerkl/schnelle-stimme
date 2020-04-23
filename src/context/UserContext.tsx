@@ -1,7 +1,14 @@
-import React, { createContext, FC, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  FC,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { User } from 'firebase';
 
-import { Firebase } from '../utils/Firebase';
+import { SnackbarContext } from './SnackbarContext';
+import { Api } from '../utils/Api';
 
 interface UserContext {
   user: User | null;
@@ -12,21 +19,23 @@ export const UserContext = createContext<UserContext>({
 });
 
 export const UserContextProvider: FC = ({ children }) => {
+  const { showSnackbar } = useContext(SnackbarContext);
+
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const signIn = async () => {
       try {
-        const { user } = await Firebase.auth().signInAnonymously();
+        const user = await Api.signIn();
+        console.log('user?.uid: ', user?.uid);
         setUser(user);
-        console.log('user: ', user?.uid);
       } catch (e) {
-        console.error(e);
+        showSnackbar(e);
       }
     };
 
     signIn();
-  }, []);
+  }, [showSnackbar]);
 
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
