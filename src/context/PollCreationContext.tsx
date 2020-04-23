@@ -1,5 +1,6 @@
 import React, { createContext, FC, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
 import { routes } from '../utils/routes';
 
 interface PollCreationContext {

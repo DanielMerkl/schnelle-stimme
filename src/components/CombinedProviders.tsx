@@ -4,13 +4,18 @@ import { StylesProvider, ThemeProvider } from '@material-ui/core';
 
 import { theme } from '../utils/theme';
 import { PollCreationContextProvider } from '../context/PollCreationContext';
+import { UserContextProvider } from '../context/UserContext';
 
 export const CombinedProviders: FC = ({ children }) => {
   return (
     <BrowserRouter>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <PollCreationContextProvider>{children}</PollCreationContextProvider>
+          <UserContextProvider>
+            <PollCreationContextProvider>
+              {children}
+            </PollCreationContextProvider>
+          </UserContextProvider>
         </ThemeProvider>
       </StylesProvider>
     </BrowserRouter>
