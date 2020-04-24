@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Divider, Fab, TextField, Typography } from '@material-ui/core';
 import { Publish } from '@material-ui/icons';
@@ -15,6 +15,7 @@ import { defaultPoll } from '../../utils/defaultObject/defaultPoll';
 import { Poll } from '../../types/interface/Poll';
 import { Api } from '../../utils/Api';
 import { PollContext } from '../../context/PollContext';
+import { useChoiceTextCount } from './useChoiceTextCount';
 
 export const PollCreationPage: FC = () => {
   const { initialTopic } = useContext(PollCreationContext);
@@ -25,6 +26,8 @@ export const PollCreationPage: FC = () => {
   const [description, setDescription] = useState('');
   const [pollType, setPollType] = useState<PollType>(PollType.SINGLE_CHOICE);
   const [choices, setChoices] = useState<Array<Choice>>([]);
+
+  const choiceTextCount = useChoiceTextCount(choices);
 
   useEffect(() => {
     setTopic(initialTopic);
@@ -46,6 +49,17 @@ export const PollCreationPage: FC = () => {
       showSnackbar(e);
     }
   };
+
+  const isValidPoll: boolean = useMemo((): boolean => {
+    let hasDuplication = false;
+    choiceTextCount.forEach((count) => {
+      if (count > 1) {
+        hasDuplication = true;
+      }
+    });
+
+    return topic !== '' && choiceTextCount.size >= 2 && !hasDuplication;
+  }, [topic, choiceTextCount]);
 
   return (
     <Wrapper>
@@ -70,6 +84,7 @@ export const PollCreationPage: FC = () => {
         color="primary"
         size="large"
         onClick={handlePublishClick}
+        disabled={!isValidPoll}
       >
         <StyledPublishIcon />
         veröffentlichen
