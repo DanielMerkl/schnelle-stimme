@@ -6,6 +6,7 @@ import { theme } from '../utils/theme';
 import { PollCreationContextProvider } from '../context/PollCreationContext';
 import { UserContextProvider } from '../context/UserContext';
 import { SnackbarContextProvider } from '../context/SnackbarContext';
+import { PollContextProvider } from '../context/PollContext';
 
 export const CombinedProviders: FC = ({ children }) => {
   return (
@@ -14,9 +15,11 @@ export const CombinedProviders: FC = ({ children }) => {
         <ThemeProvider theme={theme}>
           <SnackbarContextProvider>
             <UserContextProvider>
-              <PollCreationContextProvider>
-                {children}
-              </PollCreationContextProvider>
+              <PollContextProvider>
+                <PollCreationContextProvider>
+                  {children}
+                </PollCreationContextProvider>
+              </PollContextProvider>
             </UserContextProvider>
           </SnackbarContextProvider>
         </ThemeProvider>
