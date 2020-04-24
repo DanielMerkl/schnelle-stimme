@@ -3,28 +3,27 @@ import * as admin from 'firebase-admin';
 
 admin.initializeApp();
 
-export const invitationCode = functions.https.onRequest((request, response) => {
-  admin
-    .firestore()
-    .collection('polls')
-    .get()
-    .then((snapshot) => {
-      let done = false;
-      const min = 10000;
-      const max = 99999;
+export const generateInvitationCode = functions
+  .region('europe-west3')
+  .https.onCall(async () => {
+    const polls = await admin.firestore().collection('polls').get();
 
-      while (!done) {
-        const code = Math.floor(Math.random() * (max - min)) + min;
+    const min = 10000;
+    const max = 99999;
 
-        const isCodeUnique: boolean = snapshot.docs.every((doc) => {
-          return doc.get('invitationCode') !== code;
-        });
+    let done = false;
+    while (!done) {
+      const code = Math.floor(Math.random() * (max - min)) + min;
 
-        if (isCodeUnique) {
-          done = true;
-          response.send({ invitationCode: code });
-        }
+      const isCodeUnique: boolean = polls.docs.every((poll) => {
+        return poll.get('invitationCode') !== code;
+      });
+
+      if (isCodeUnique) {
+        done = true;
+        return code;
       }
-    })
-    .catch((e) => console.error(e));
-});
+    }
+
+    throw new Error('Error while generating invitation code.');
+  });
