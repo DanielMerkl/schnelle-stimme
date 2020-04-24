@@ -1,29 +1,18 @@
-import React, { Dispatch, FC, SetStateAction, useMemo } from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
 import { IconButton, TextField } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import styled from 'styled-components';
 
 import { Choice } from '../../types/interface/Choice';
+import { useChoiceTextCount } from './useChoiceTextCount';
 
 interface Props {
   choices: Array<Choice>;
   setChoices: Dispatch<SetStateAction<Array<Choice>>>;
 }
 
-type ChoiceText = string;
-type Count = number;
-
 export const Choices: FC<Props> = ({ choices, setChoices }) => {
-  const choiceTextCount: Map<ChoiceText, Count> = useMemo(() => {
-    const map = new Map<ChoiceText, Count>();
-    choices.forEach((choice) => {
-      const oldCount: number | undefined = map.get(choice.text);
-      const newCount = !!oldCount ? oldCount + 1 : 1;
-      map.set(choice.text, newCount);
-    });
-
-    return map;
-  }, [choices]);
+  const choiceTextCount = useChoiceTextCount(choices);
 
   const handleChange = (id: string, updatedChoiceText: string) => {
     setChoices((prevState) => {
