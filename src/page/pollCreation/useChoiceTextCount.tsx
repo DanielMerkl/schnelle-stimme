@@ -10,6 +10,7 @@ export const useChoiceTextCount = (
 ): Map<ChoiceText, Count> => {
   return useMemo(() => {
     const map = new Map<ChoiceText, Count>();
+
     choices.forEach((choice) => {
       const oldCount: number | undefined = map.get(choice.text);
       const newCount = !!oldCount ? oldCount + 1 : 1;
