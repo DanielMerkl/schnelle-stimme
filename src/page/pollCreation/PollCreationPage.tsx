@@ -10,9 +10,16 @@ import { PollTypeSelection } from './PollTypeSelection';
 import { AddAdditionalChoiceInput } from './AddAdditionalChoiceInput';
 import { Choice } from '../../types/interface/Choice';
 import { Choices } from './Choices';
+import { SnackbarContext } from '../../context/SnackbarContext';
+import { defaultPoll } from '../../utils/defaultObject/defaultPoll';
+import { Poll } from '../../types/interface/Poll';
+import { Api } from '../../utils/Api';
+import { PollContext } from '../../context/PollContext';
 
 export const PollCreationPage: FC = () => {
   const { initialTopic } = useContext(PollCreationContext);
+  const { showSnackbar } = useContext(SnackbarContext);
+  const { openPoll } = useContext(PollContext);
 
   const [topic, setTopic] = useState<string>(initialTopic);
   const [description, setDescription] = useState('');
@@ -23,8 +30,21 @@ export const PollCreationPage: FC = () => {
     setTopic(initialTopic);
   }, [initialTopic]);
 
-  const handlePublishClick = () => {
-    // TODO: implement validation
+  const handlePublishClick = async () => {
+    try {
+      const poll: Poll = {
+        ...defaultPoll,
+        topic,
+        description,
+        type: pollType,
+        choices,
+      };
+      const createdPoll = await Api.createPoll(poll);
+      console.log(`Poll with ID "${createdPoll.id}" was successfully created.`);
+      openPoll(createdPoll);
+    } catch (e) {
+      showSnackbar(e);
+    }
   };
 
   return (
