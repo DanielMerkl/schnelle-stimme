@@ -1,6 +1,12 @@
 import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { Divider, Fab, TextField, Typography } from '@material-ui/core';
+import {
+  Divider,
+  Fab,
+  TextField,
+  Typography,
+  CircularProgress,
+} from '@material-ui/core';
 import { Publish } from '@material-ui/icons';
 
 import { PollCreationContext } from '../../context/PollCreationContext';
@@ -26,6 +32,7 @@ export const PollCreationPage: FC = () => {
   const [description, setDescription] = useState('');
   const [pollType, setPollType] = useState<PollType>(PollType.SINGLE_CHOICE);
   const [choices, setChoices] = useState<Array<Choice>>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const choiceTextCount = useChoiceTextCount(choices);
 
@@ -42,7 +49,9 @@ export const PollCreationPage: FC = () => {
         type: pollType,
         choices,
       };
+      setIsLoading(true);
       const createdPoll = await Api.createPoll(poll);
+      setIsLoading(false);
       console.log(`Poll with ID "${createdPoll.id}" was successfully created.`);
       openPoll(createdPoll);
     } catch (e) {
@@ -84,10 +93,16 @@ export const PollCreationPage: FC = () => {
         color="primary"
         size="large"
         onClick={handlePublishClick}
-        disabled={!isValidPoll}
+        disabled={!isValidPoll || isLoading}
       >
-        <StyledPublishIcon />
-        veröffentlichen
+        {isLoading ? (
+          <CircularProgress size={24} />
+        ) : (
+          <>
+            <StyledPublishIcon />
+            veröffentlichen
+          </>
+        )}
       </StyledFab>
     </Wrapper>
   );
