@@ -7,4 +7,8 @@ export const keyboardEventMock = {
     key: 'Escape',
     charCode: 27,
   },
+  downArrow: {
+    key: 'ArrowDown',
+    charCode: 40,
+  },
 };
