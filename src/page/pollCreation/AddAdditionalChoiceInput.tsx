@@ -77,7 +77,7 @@ export const AddAdditionalChoiceInput: FC<Props> = ({
     } else {
       const additionalChoice: Choice = {
         id: Date.now().toString(),
-        text: choiceText,
+        text: choiceText.trim(),
       };
       setChoices((prevState) => [...prevState, additionalChoice]);
       setChoiceText('');
