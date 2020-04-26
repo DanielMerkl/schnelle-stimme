@@ -16,6 +16,7 @@ export const TopicInput: FC<Props> = ({ value, onChange }) => {
       variant="outlined"
       required
       fullWidth
+      autoFocus
       error={wasTargeted && value === ''}
       value={value}
       onChange={(event) => onChange(event.target.value)}
