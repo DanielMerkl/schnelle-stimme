@@ -127,7 +127,7 @@ export const AddAdditionalChoiceInput: FC<Props> = ({
             size="large"
             fullWidth
             onClick={handleAddAdditionalChoiceButtonClick}
-            disableRipple
+            disableTouchRipple
           >
             <StyledAddIcon />
             zusätzliche Antwort
