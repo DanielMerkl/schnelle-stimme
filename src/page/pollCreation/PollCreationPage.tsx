@@ -22,23 +22,39 @@ import { Poll } from '../../types/interface/Poll';
 import { Api } from '../../utils/Api';
 import { PollContext } from '../../context/PollContext';
 import { useChoiceTextCount } from './useChoiceTextCount';
+import { useSessionStorage } from './useSessionStorage';
+import { SessionStorageItem } from '../../types/enum/SessionStorageItem';
 
 export const PollCreationPage: FC = () => {
   const { initialTopic } = useContext(PollCreationContext);
   const { showSnackbar } = useContext(SnackbarContext);
   const { openPoll } = useContext(PollContext);
 
-  const [topic, setTopic] = useState<string>(initialTopic);
-  const [description, setDescription] = useState('');
-  const [pollType, setPollType] = useState<PollType>(PollType.SINGLE_CHOICE);
-  const [choices, setChoices] = useState<Array<Choice>>([]);
+  const [topic, setTopic] = useSessionStorage<string>(
+    SessionStorageItem.Topic,
+    initialTopic
+  );
+  const [description, setDescription] = useSessionStorage(
+    SessionStorageItem.Description,
+    ''
+  );
+  const [pollType, setPollType] = useSessionStorage<PollType>(
+    SessionStorageItem.PollType,
+    PollType.SINGLE_CHOICE
+  );
+  const [choices, setChoices] = useSessionStorage<Array<Choice>>(
+    SessionStorageItem.Choices,
+    []
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const choiceTextCount = useChoiceTextCount(choices);
 
   useEffect(() => {
-    setTopic(initialTopic);
-  }, [initialTopic]);
+    if (initialTopic !== '') {
+      setTopic(initialTopic);
+    }
+  }, [initialTopic, setTopic]);
 
   const handlePublishClick = async () => {
     try {
