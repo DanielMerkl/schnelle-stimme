@@ -23,7 +23,7 @@ import { Api } from '../../utils/Api';
 import { PollContext } from '../../context/PollContext';
 import { useChoiceTextCount } from './useChoiceTextCount';
 import { useSessionStorage } from './useSessionStorage';
-import { SessionStorageItem } from '../../types/enum/SessionStorageItem';
+import { PollCreationSessionStorageItem } from '../../types/enum/PollCreationSessionStorageItem';
 
 export const PollCreationPage: FC = () => {
   const { initialTopic } = useContext(PollCreationContext);
@@ -31,19 +31,19 @@ export const PollCreationPage: FC = () => {
   const { openPoll } = useContext(PollContext);
 
   const [topic, setTopic] = useSessionStorage<string>(
-    SessionStorageItem.Topic,
+    PollCreationSessionStorageItem.Topic,
     initialTopic
   );
   const [description, setDescription] = useSessionStorage(
-    SessionStorageItem.Description,
+    PollCreationSessionStorageItem.Description,
     ''
   );
   const [pollType, setPollType] = useSessionStorage<PollType>(
-    SessionStorageItem.PollType,
+    PollCreationSessionStorageItem.PollType,
     PollType.SINGLE_CHOICE
   );
   const [choices, setChoices] = useSessionStorage<Array<Choice>>(
-    SessionStorageItem.Choices,
+    PollCreationSessionStorageItem.Choices,
     []
   );
   const [isLoading, setIsLoading] = useState(false);

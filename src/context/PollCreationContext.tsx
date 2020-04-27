@@ -2,7 +2,7 @@ import React, { createContext, FC, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { routes } from '../utils/routes';
-import { SessionStorageItem } from '../types/enum/SessionStorageItem';
+import { PollCreationSessionStorageItem } from '../types/enum/PollCreationSessionStorageItem';
 
 interface PollCreationContext {
   initialTopic: string;
@@ -20,7 +20,7 @@ export const PollCreationContextProvider: FC = ({ children }) => {
   const [initialTopic, setInitialTopic] = useState('');
 
   const openWithInitialTopic = (initialTopic: string) => {
-    Object.values(SessionStorageItem).forEach((item) => {
+    Object.values(PollCreationSessionStorageItem).forEach((item) => {
       sessionStorage.removeItem(item);
     });
     setInitialTopic(initialTopic);

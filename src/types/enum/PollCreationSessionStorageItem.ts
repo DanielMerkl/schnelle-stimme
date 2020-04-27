@@ -1,4 +1,4 @@
-export enum SessionStorageItem {
+export enum PollCreationSessionStorageItem {
   Topic = 'Topic',
   Description = 'Description',
   PollType = 'PollType',
