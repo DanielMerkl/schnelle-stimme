@@ -44,7 +44,7 @@ export const Choices: FC<Props> = ({ choices, setChoices }) => {
               onChange={(event) => handleChange(choice.id, event.target.value)}
             />
             <IconButton
-              aria-label="löschen"
+              aria-label={`${index + 1}. Antwortmöglichkeit löschen`}
               onClick={() => handleDeleteClick(choice.id)}
             >
               <Delete />
