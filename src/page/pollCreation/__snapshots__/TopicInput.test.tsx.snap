@@ -6,7 +6,7 @@ exports[`TopicInput renders correctly 1`] = `
     class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
   >
     <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled Mui-required Mui-required"
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled Mui-focused Mui-focused Mui-required Mui-required"
       data-shrink="true"
       for="topic"
       id="topic-label"
@@ -20,7 +20,7 @@ exports[`TopicInput renders correctly 1`] = `
       </span>
     </label>
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth Mui-focused Mui-focused MuiInputBase-formControl"
     >
       <input
         aria-invalid="false"
