@@ -15,18 +15,15 @@ export const Choices: FC<Props> = ({ choices, setChoices }) => {
   const choiceTextCount = useChoiceTextCount(choices);
 
   const handleChange = (id: string, updatedChoiceText: string) => {
-    setChoices((prevState) => {
-      const choicesCopy = [...prevState];
-      const index = prevState.findIndex((choice) => choice.id === id);
-      choicesCopy[index].text = updatedChoiceText;
-      return choicesCopy;
-    });
+    const updatedChoices = [...choices];
+    const index = choices.findIndex((choice) => choice.id === id);
+    updatedChoices[index].text = updatedChoiceText;
+    setChoices(updatedChoices);
   };
 
-  const handleDeleteClick = (idToBeDeleted: string) => {
-    setChoices((prevState) => {
-      return prevState.filter((choice) => choice.id !== idToBeDeleted);
-    });
+  const handleDeleteClick = (id: string) => {
+    const filteredChoices = choices.filter((choice) => choice.id !== id);
+    setChoices(filteredChoices);
   };
 
   return (
