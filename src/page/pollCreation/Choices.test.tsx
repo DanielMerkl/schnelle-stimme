@@ -72,7 +72,7 @@ describe('Choices', () => {
     const inputElements = await findAllByDisplayValue('Banane');
 
     expect(inputElements.length).toEqual(2);
-    expect(inputElements[0].getAttribute('aria-invalid')).toEqual('true');
-    expect(inputElements[1].getAttribute('aria-invalid')).toEqual('true');
+    expect(inputElements[0]).toBeInvalid();
+    expect(inputElements[1]).toBeInvalid();
   });
 });

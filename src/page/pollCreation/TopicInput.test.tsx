@@ -1,36 +1,50 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, RenderResult } from '@testing-library/react';
 
 import { TopicInput } from './TopicInput';
 
 describe('TopicInput', () => {
-  it('renders correctly', () => {
-    const { container } = render(
-      <TopicInput value={'Banana'} onChange={jest.fn()} />
-    );
+  const onChangeMock = jest.fn();
+  let renderResult: RenderResult;
 
-    expect(container).toMatchSnapshot();
+  beforeEach(() => {
+    renderResult = render(<TopicInput value={''} onChange={onChangeMock} />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should be required', () => {
+    const { getByLabelText } = renderResult;
+    const topicInput = getByLabelText('Thema / Frage *');
+
+    expect(topicInput).toBeRequired();
+  });
+
+  it('calls onChange-callback correcty', () => {
+    const { getByLabelText } = renderResult;
+    const topicInput = getByLabelText('Thema / Frage *');
+
+    fireEvent.change(topicInput, { target: { value: 'Banana' } });
+
+    expect(onChangeMock).toHaveBeenCalledWith('Banana');
   });
 
   it('displays error state when input is empty and was targeted', async () => {
-    const { rerender, getByLabelText } = render(
-      <TopicInput value={''} onChange={jest.fn()} />
-    );
-
+    const { rerender, getByLabelText } = renderResult;
     const topicInput = getByLabelText('Thema / Frage *');
-
-    expect(topicInput.getAttribute('aria-invalid')).toEqual('false');
 
     fireEvent.blur(topicInput);
 
-    expect(topicInput.getAttribute('aria-invalid')).toEqual('true');
+    expect(topicInput).toBeInvalid();
 
-    rerender(<TopicInput value={'Banane'} onChange={jest.fn()} />);
+    rerender(<TopicInput value={'Banane'} onChange={() => {}} />);
 
-    expect(topicInput.getAttribute('aria-invalid')).toEqual('false');
+    expect(topicInput).toBeValid();
 
-    rerender(<TopicInput value={''} onChange={jest.fn()} />);
+    rerender(<TopicInput value={''} onChange={() => {}} />);
 
-    expect(topicInput.getAttribute('aria-invalid')).toEqual('true');
+    expect(topicInput).toBeInvalid();
   });
 });
