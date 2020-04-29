@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { PollTypeSelection } from './PollTypeSelection';
 import { PollType } from '../../types/enum/PollType';
@@ -52,7 +53,7 @@ describe('PollTypeSelection', () => {
 
     fireEvent.keyDown(selection, keyboardEventMock.downArrow);
     const selectionItem = getByText('Multiple-Choice');
-    fireEvent.click(selectionItem);
+    userEvent.click(selectionItem);
 
     expect(handleChangeMock).toHaveBeenCalledWith(PollType.MULTIPLE_CHOICE);
   });

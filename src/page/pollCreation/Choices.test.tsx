@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, RenderResult } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Choices } from './Choices';
@@ -40,7 +40,7 @@ describe('Choices', () => {
     const { getByLabelText } = renderResult;
     const deleteButton = getByLabelText('2. Antwortmöglichkeit löschen');
 
-    fireEvent.click(deleteButton);
+    userEvent.click(deleteButton);
 
     const updatedChoices: Array<Choice> = setChoicesMock.mock.calls[0][0];
     const ananas = updatedChoices.find((choice) => choice.text === 'Ananas');

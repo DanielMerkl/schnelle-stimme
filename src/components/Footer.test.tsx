@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { Footer } from './Footer';
 import { renderWithRouter } from '../utils/function/renderWithRouter';
@@ -38,7 +38,7 @@ describe('Footer', () => {
     const { getByText, history } = renderWithRouter(<Footer />);
     const imprintLink = getByText('Impressum');
 
-    fireEvent.click(imprintLink);
+    userEvent.click(imprintLink);
 
     expect(history.location.pathname).toEqual(routes.imprint);
   });
@@ -47,7 +47,7 @@ describe('Footer', () => {
     const { getByText, history } = renderWithRouter(<Footer />);
     const privacyPoliciesLink = getByText('Datenschutzrichtlinien');
 
-    fireEvent.click(privacyPoliciesLink);
+    userEvent.click(privacyPoliciesLink);
 
     expect(history.location.pathname).toEqual(routes.privacy);
   });
@@ -56,7 +56,7 @@ describe('Footer', () => {
     const { getByText, history } = renderWithRouter(<Footer />);
     const termsOfServiceLink = getByText('Nutzungsbedingungen');
 
-    fireEvent.click(termsOfServiceLink);
+    userEvent.click(termsOfServiceLink);
 
     expect(history.location.pathname).toEqual(routes.terms);
   });

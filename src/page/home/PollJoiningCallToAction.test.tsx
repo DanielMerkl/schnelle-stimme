@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { PollJoiningCallToAction } from './PollJoiningCallToAction';
@@ -26,7 +26,7 @@ describe('PollJoiningCallToAction', () => {
     const submitButton = getByText('beitreten');
 
     userEvent.type(codeInput, '123');
-    fireEvent.click(submitButton);
+    userEvent.click(submitButton);
 
     const errorMessage = getByText(messages.error.codeIsNotFiveDigits);
     expect(errorMessage).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe('PollJoiningCallToAction', () => {
     const codeInput = getByLabelText('5-stelliger Code');
     const submitButton = getByText('beitreten');
 
-    fireEvent.click(submitButton);
+    userEvent.click(submitButton);
     let errorMessage = getByText(messages.error.codeIsNotFiveDigits);
     expect(errorMessage).toBeInTheDocument();
 

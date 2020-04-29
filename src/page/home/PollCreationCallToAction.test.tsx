@@ -34,7 +34,7 @@ describe('PollCreationCallToAction', () => {
     const topicInput = getByLabelText('Thema / Frage');
 
     userEvent.type(topicInput, 'Banana');
-    fireEvent.click(submitButton);
+    userEvent.click(submitButton);
 
     expect(history.location.pathname).toEqual(routes.creation);
     const initialTopicInput = getByDisplayValue('Banana');
