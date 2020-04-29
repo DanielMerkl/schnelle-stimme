@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { TopicInput } from './TopicInput';
 
@@ -26,7 +27,7 @@ describe('TopicInput', () => {
     const { getByLabelText } = renderResult;
     const topicInput = getByLabelText('Thema / Frage *');
 
-    fireEvent.change(topicInput, { target: { value: 'Banana' } });
+    userEvent.type(topicInput, 'Banana');
 
     expect(onChangeMock).toHaveBeenCalledWith('Banana');
   });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { PollCreationCallToAction } from './PollCreationCallToAction';
 import { renderWithRouter } from '../../utils/function/renderWithRouter';
@@ -32,7 +33,7 @@ describe('PollCreationCallToAction', () => {
     const submitButton = getByText('erstellen');
     const topicInput = getByLabelText('Thema / Frage');
 
-    fireEvent.change(topicInput, { target: { value: 'Banana' } });
+    userEvent.type(topicInput, 'Banana');
     fireEvent.click(submitButton);
 
     expect(history.location.pathname).toEqual(routes.creation);
@@ -46,7 +47,7 @@ describe('PollCreationCallToAction', () => {
     );
     const topicInput = getByLabelText('Thema / Frage');
 
-    fireEvent.change(topicInput, { target: { value: 'Banana' } });
+    userEvent.type(topicInput, 'Banana');
     fireEvent.keyPress(topicInput, keyboardEventMock.enter);
 
     expect(history.location.pathname).toEqual(routes.creation);
