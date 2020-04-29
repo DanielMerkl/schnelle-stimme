@@ -22,7 +22,7 @@ describe('TopicInput', () => {
     expect(topicInput).toBeRequired();
   });
 
-  it('calls onChange-callback correcty', () => {
+  it('calls onChange-callback correctly', () => {
     const { getByLabelText } = renderResult;
     const topicInput = getByLabelText('Thema / Frage *');
 
