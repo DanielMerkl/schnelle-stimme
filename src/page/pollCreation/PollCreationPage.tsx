@@ -22,7 +22,7 @@ import { Poll } from '../../types/interface/Poll';
 import { Api } from '../../utils/Api';
 import { PollContext } from '../../context/PollContext';
 import { useChoiceTextCount } from './useChoiceTextCount';
-import { useSessionStorage } from './useSessionStorage';
+import { useSessionStorage } from '../../utils/hook/useSessionStorage';
 import { PollCreationSessionStorageItem } from '../../types/enum/PollCreationSessionStorageItem';
 
 export const PollCreationPage: FC = () => {
