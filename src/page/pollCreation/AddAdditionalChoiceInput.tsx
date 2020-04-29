@@ -79,7 +79,7 @@ export const AddAdditionalChoiceInput: FC<Props> = ({
         id: Date.now().toString(),
         text: choiceText.trim(),
       };
-      setChoices((prevState) => [...prevState, additionalChoice]);
+      setChoices([...choices, additionalChoice]);
       setChoiceText('');
       scrollDownAfterSubmit();
     }
