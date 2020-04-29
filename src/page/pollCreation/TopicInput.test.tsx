@@ -23,6 +23,13 @@ describe('TopicInput', () => {
     expect(topicInput).toBeRequired();
   });
 
+  it('should be focused', () => {
+    const { getByLabelText } = renderResult;
+    const topicInput = getByLabelText('Thema / Frage *');
+
+    expect(topicInput).toHaveFocus();
+  });
+
   it('calls onChange-callback correctly', () => {
     const { getByLabelText } = renderResult;
     const topicInput = getByLabelText('Thema / Frage *');
