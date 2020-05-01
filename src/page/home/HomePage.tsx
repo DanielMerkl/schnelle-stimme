@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import { Typography } from '@material-ui/core';
 import styled from 'styled-components';
 
-import { CallToActions } from './CallToActions';
 import { UniqueSellingPoints } from './UniqueSellingPoints';
+import { PollCreationCallToAction } from './PollCreationCallToAction';
+import { PollJoiningCallToAction } from './PollJoiningCallToAction';
 
 export const HomePage: FC = () => (
   <Wrapper>
@@ -15,7 +16,10 @@ export const HomePage: FC = () => (
         Der schnellste Weg, eine Umfrage zu machen.
       </Typography>
     </section>
-    <CallToActions />
+    <CallToActionsWrapper>
+      <PollCreationCallToAction />
+      <PollJoiningCallToAction />
+    </CallToActionsWrapper>
     <UniqueSellingPoints />
   </Wrapper>
 );
@@ -27,4 +31,15 @@ const Wrapper = styled.main`
   padding: 3rem 1rem 5rem 1rem;
   display: grid;
   gap: 5rem;
+`;
+
+const CallToActionsWrapper = styled.div`
+  max-width: 1000px;
+  justify-self: center;
+  display: grid;
+  gap: 5rem;
+  grid-template-columns: 1fr 1fr;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `;
