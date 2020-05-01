@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, RenderResult } from '@testing-library/react';
+import { render, RenderResult, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Choices } from './Choices';
@@ -52,9 +52,7 @@ describe('Choices', () => {
     const { getByLabelText } = renderResult;
     const secondInput = getByLabelText('2. Antwortmöglichkeit');
 
-    // TODO: remove ts-ignore as soon as type-definitions of library have been updated
-    // @ts-ignore
-    userEvent.clear(secondInput);
+    fireEvent.change(secondInput, { target: { value: '' } });
     userEvent.type(secondInput, 'Apfel');
 
     const updatedChoices: Array<Choice> = setChoicesMock.mock.calls[0][0];
