@@ -31,7 +31,7 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.section<WrapperProps>`
-  padding: 2rem;
+  padding: 1rem;
   max-width: 400px;
   grid-area: ${(props) => props.gridarea};
   display: grid;

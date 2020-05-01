@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
 import { PollCreationContext } from '../../context/PollCreationContext';
+import { isEnterKey } from '../../utils/function/isEnterKey';
 
 export const PollCreationCallToAction: FC = () => {
   const { openWithInitialTopic } = useContext(PollCreationContext);
@@ -22,7 +23,7 @@ export const PollCreationCallToAction: FC = () => {
   };
 
   const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter') {
+    if (isEnterKey(event)) {
       submit();
     }
   };
@@ -40,10 +41,10 @@ export const PollCreationCallToAction: FC = () => {
         variant="outlined"
         label="Thema / Frage"
         value={topic}
+        id="initial-topic"
         onChange={handleTopicChange}
         helperText=" " // empty helper text in order to align it with the other call to action
         onKeyPress={handleKeyPress}
-        inputProps={{ 'data-testid': 'topic-input' }}
       />
       <Fab variant="extended" color="primary" onClick={submit}>
         <StyledIcon />

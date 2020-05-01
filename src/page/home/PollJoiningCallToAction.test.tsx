@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { PollJoiningCallToAction } from './PollJoiningCallToAction';
 import { messages } from './utils/messages';
@@ -20,29 +21,29 @@ describe('PollJoiningCallToAction', () => {
   });
 
   it('shows error message if code is too short', () => {
-    const { getByTestId, getByText } = render(<PollJoiningCallToAction />);
-    const codeInput = getByTestId('code-input');
+    const { getByLabelText, getByText } = render(<PollJoiningCallToAction />);
+    const codeInput = getByLabelText('5-stelliger Code');
     const submitButton = getByText('beitreten');
 
-    fireEvent.change(codeInput, { target: { value: '123' } });
-    fireEvent.click(submitButton);
+    userEvent.type(codeInput, '123');
+    userEvent.click(submitButton);
 
     const errorMessage = getByText(messages.error.codeIsNotFiveDigits);
     expect(errorMessage).toBeInTheDocument();
   });
 
   it('hides error message when user is typing', () => {
-    const { getByTestId, getByText, queryByText } = render(
+    const { getByLabelText, getByText, queryByText } = render(
       <PollJoiningCallToAction />
     );
-    const codeInput = getByTestId('code-input');
+    const codeInput = getByLabelText('5-stelliger Code');
     const submitButton = getByText('beitreten');
 
-    fireEvent.click(submitButton);
+    userEvent.click(submitButton);
     let errorMessage = getByText(messages.error.codeIsNotFiveDigits);
     expect(errorMessage).toBeInTheDocument();
 
-    fireEvent.change(codeInput, { target: { value: '1' } });
+    userEvent.type(codeInput, '1');
 
     const element = queryByText(messages.error.codeIsNotFiveDigits);
     expect(element).not.toBeInTheDocument();

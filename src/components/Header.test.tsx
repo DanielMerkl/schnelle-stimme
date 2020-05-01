@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { Header } from './Header';
 import { renderWithProviders } from '../utils/function/renderWithProviders';
@@ -27,7 +27,7 @@ describe('Header', () => {
     });
     const homeButton = getByTestId('home-button');
 
-    fireEvent.click(homeButton);
+    userEvent.click(homeButton);
 
     expect(history.location.pathname).toEqual(routes.home);
   });
@@ -38,7 +38,7 @@ describe('Header', () => {
     });
     const title = getByText('Schnelle Stimme', { exact: false });
 
-    fireEvent.click(title);
+    userEvent.click(title);
 
     expect(history.location.pathname).toEqual(routes.home);
   });

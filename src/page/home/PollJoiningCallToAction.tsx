@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
 import { messages } from './utils/messages';
+import { isEnterKey } from '../../utils/function/isEnterKey';
 
 export const PollJoiningCallToAction: FC = () => {
   const [code, setCode] = useState('');
@@ -21,7 +22,7 @@ export const PollJoiningCallToAction: FC = () => {
   };
 
   const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter') {
+    if (isEnterKey(event)) {
       submit();
     }
   };
@@ -44,12 +45,12 @@ export const PollJoiningCallToAction: FC = () => {
         variant="outlined"
         label="5-stelliger Code"
         value={code}
+        id="code"
         onChange={handleCodeChange}
         inputMode="numeric"
         error={error}
         helperText={helperText}
         onKeyPress={handleKeyPress}
-        inputProps={{ 'data-testid': 'code-input' }}
       />
       <Fab variant="extended" color="primary" onClick={submit}>
         <StyledIcon />
