@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-export function useSessionStorage<T>(
+export const useSessionStorage = <T extends any>(
   key: string,
   initialValue: T
-): [T, Dispatch<SetStateAction<T>>] {
+): [T, Dispatch<SetStateAction<T>>] => {
   const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
@@ -32,4 +32,4 @@ export function useSessionStorage<T>(
   }, [key, value]);
 
   return [value, setValue];
-}
+};
