@@ -68,7 +68,6 @@ export const PollCreationPage: FC = () => {
       setIsLoading(true);
       const createdPoll = await Api.createPoll(poll);
       setIsLoading(false);
-      console.log(`Poll with ID "${createdPoll.id}" was successfully created.`);
       openPoll(createdPoll);
     } catch (e) {
       showSnackbar(e);

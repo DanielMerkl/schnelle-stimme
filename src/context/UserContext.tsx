@@ -27,7 +27,6 @@ export const UserContextProvider: FC = ({ children }) => {
     const signIn = async () => {
       try {
         const user = await Api.signIn();
-        console.log('user?.uid: ', user?.uid);
         setUser(user);
       } catch (e) {
         showSnackbar(e);
