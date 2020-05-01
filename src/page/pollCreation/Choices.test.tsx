@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, RenderResult, fireEvent } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Choices } from './Choices';
@@ -52,15 +52,14 @@ describe('Choices', () => {
     const { getByLabelText } = renderResult;
     const secondInput = getByLabelText('2. Antwortmöglichkeit');
 
-    fireEvent.change(secondInput, { target: { value: '' } });
-    userEvent.type(secondInput, 'Apfel');
+    userEvent.type(secondInput, '123');
 
     const updatedChoices: Array<Choice> = setChoicesMock.mock.calls[0][0];
     const ananas = updatedChoices.find((choice) => choice.text === 'Ananas');
     const updatedSecondInputValue = updatedChoices[1].text;
     expect(updatedChoices.length).toEqual(3);
     expect(ananas).toBeUndefined();
-    expect(updatedSecondInputValue).toEqual('Apfel');
+    expect(updatedSecondInputValue).toEqual('Ananas123');
   });
 
   it('displays error state when text is duplicated', async () => {
