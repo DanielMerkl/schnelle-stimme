@@ -21,6 +21,7 @@ export const HomePage: FC = () => (
 );
 
 const Wrapper = styled.main`
+  height: fit-content;
   max-width: var(--max-app-width);
   margin: 0 auto;
   padding: 3rem 1rem 5rem 1rem;
