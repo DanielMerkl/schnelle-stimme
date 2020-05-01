@@ -1,6 +1,7 @@
 import { User } from 'firebase';
 
 import { Poll } from '../../types/interface/Poll';
+import { Api as RealApi } from '../Api';
 
 const signIn = jest.fn(
   async (): Promise<User | null> => {
@@ -14,7 +15,7 @@ const createPoll = jest.fn(
   }
 );
 
-export const Api = {
+export const Api: typeof RealApi = {
   signIn,
   createPoll,
 };
