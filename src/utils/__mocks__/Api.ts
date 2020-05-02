@@ -2,6 +2,7 @@ import { User } from 'firebase';
 
 import { Poll } from '../../types/interface/Poll';
 import { Api as RealApi } from '../Api';
+import { PollType } from '../../types/enum/PollType';
 
 const signIn = jest.fn(
   async (): Promise<User | null> => {
@@ -15,7 +16,24 @@ const createPoll = jest.fn(
   }
 );
 
+const findPollByInvitationCode = jest.fn(
+  async (): Promise<Poll | null> => {
+    return Promise.resolve({
+      id: '123',
+      invitationCode: 11111,
+      topic: 'Banana',
+      description: 'One crooked banana.',
+      choices: [],
+      type: PollType.SINGLE_CHOICE,
+      isNameMandatory: false,
+      isResultSecret: false,
+      answers: [],
+    });
+  }
+);
+
 export const Api: typeof RealApi = {
   signIn,
   createPoll,
+  findPollByInvitationCode,
 };

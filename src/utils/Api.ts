@@ -48,7 +48,26 @@ const generateInvitationCode = async (): Promise<number> => {
   return data;
 };
 
+const findPollByInvitationCode = async (code: number): Promise<Poll | null> => {
+  try {
+    const snapshot = await Firebase.firestore()
+      .collection(Collection.polls)
+      .where('invitationCode', '==', code)
+      .get();
+
+    if (snapshot.size > 1) {
+      throw new Error(`Found more than one poll with code "${code}."`);
+    }
+
+    return snapshot.empty ? null : (snapshot.docs[0].data() as Poll);
+  } catch (e) {
+    console.error(e);
+    throw new Error('Fehler beim Suchen der Umfrage.');
+  }
+};
+
 export const Api = {
   signIn,
   createPoll,
+  findPollByInvitationCode,
 };
