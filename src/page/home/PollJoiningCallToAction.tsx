@@ -1,16 +1,36 @@
-import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
-import { Fab, TextField, Typography } from '@material-ui/core';
+import React, {
+  ChangeEvent,
+  FC,
+  KeyboardEvent,
+  useContext,
+  useState,
+} from 'react';
+import {
+  CircularProgress,
+  Fab,
+  TextField,
+  Typography,
+} from '@material-ui/core';
 import { ExitToApp } from '@material-ui/icons';
 import styled from 'styled-components';
 
 import { CallToActionWrapper } from './CallToActionWrapper';
 import { messages } from './utils/messages';
 import { isEnterKey } from '../../utils/function/isEnterKey';
+import { Api } from '../../utils/Api';
+import { PollContext } from '../../context/PollContext';
+import { SnackbarContext } from '../../context/SnackbarContext';
+import { useIsMounted } from '../../utils/hook/useIsMounted';
 
 export const PollJoiningCallToAction: FC = () => {
+  const { openPoll } = useContext(PollContext);
+  const { showSnackbar } = useContext(SnackbarContext);
+  const isMounted = useIsMounted();
+
   const [code, setCode] = useState('');
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState(' ');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCodeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const updatedCode = event.target.value;
@@ -27,9 +47,23 @@ export const PollJoiningCallToAction: FC = () => {
     }
   };
 
-  const submit = () => {
+  const submit = async () => {
     if (code.length === 5) {
-      // TODO: trigger join mechanism
+      setIsLoading(true);
+      try {
+        const foundPoll = await Api.findPollByInvitationCode(Number(code));
+        if (foundPoll == null) {
+          setError(true);
+          setHelperText(messages.error.noPollFound);
+        } else {
+          openPoll(foundPoll);
+        }
+      } catch (e) {
+        showSnackbar(e);
+      }
+      if (isMounted.current) {
+        setIsLoading(false);
+      }
     } else {
       setError(true);
       setHelperText(messages.error.codeIsNotFiveDigits);
@@ -52,9 +86,20 @@ export const PollJoiningCallToAction: FC = () => {
         helperText={helperText}
         onKeyPress={handleKeyPress}
       />
-      <Fab variant="extended" color="primary" onClick={submit}>
-        <StyledIcon />
-        beitreten
+      <Fab
+        variant="extended"
+        color="primary"
+        onClick={submit}
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <CircularProgress size={24} />
+        ) : (
+          <>
+            <StyledIcon />
+            beitreten
+          </>
+        )}
       </Fab>
     </CallToActionWrapper>
   );
