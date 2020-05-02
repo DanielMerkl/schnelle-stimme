@@ -11,7 +11,7 @@ interface Props {
   setChoices: Dispatch<SetStateAction<Array<Choice>>>;
 }
 
-export const Choices: FC<Props> = ({ choices, setChoices }) => {
+export const Choices: FC<Props> = React.memo(({ choices, setChoices }) => {
   const choiceTextCount = useChoiceTextCount(choices);
 
   const handleChange = (id: string, updatedChoiceText: string) => {
@@ -54,7 +54,7 @@ export const Choices: FC<Props> = ({ choices, setChoices }) => {
       })}
     </>
   );
-};
+});
 
 const ChoiceWrapper = styled.div`
   display: grid;

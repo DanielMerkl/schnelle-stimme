@@ -25,118 +25,117 @@ interface Props {
   setChoices: Dispatch<SetStateAction<Array<Choice>>>;
 }
 
-export const AddAdditionalChoiceInput: FC<Props> = ({
-  choices,
-  setChoices,
-}) => {
-  const [isTyping, setIsTyping] = useState(false);
-  const [choiceText, setChoiceText] = useState('');
-  const [error, setError] = useState(false);
-  const [helperText, setHelperText] = useState(' ');
+export const AddAdditionalChoiceInput: FC<Props> = React.memo(
+  ({ choices, setChoices }) => {
+    const [isTyping, setIsTyping] = useState(false);
+    const [choiceText, setChoiceText] = useState('');
+    const [error, setError] = useState(false);
+    const [helperText, setHelperText] = useState(' ');
 
-  const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleAddAdditionalChoiceButtonClick = () => {
-    setIsTyping(true);
-  };
+    const handleAddAdditionalChoiceButtonClick = () => {
+      setIsTyping(true);
+    };
 
-  const handleClickAway = () => {
-    setIsTyping(false);
-    setChoiceText('');
-    setError(false);
-    setHelperText(' ');
-  };
-
-  const handleChoiceTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setError(false);
-    setHelperText(' ');
-    setChoiceText(event.target.value);
-  };
-
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (isEnterKey(event)) {
-      submit();
-    }
-    if (isEscapeKey(event)) {
-      handleClickAway();
-    }
-  };
-
-  const handleAddIconButtonClick = () => {
-    submit();
-    inputRef.current?.focus();
-  };
-
-  const submit = () => {
-    if (choiceText.length === 0) {
-      setError(true);
-      setHelperText('Bitte eine Antwort eingeben.');
-    } else if (choices.some((choice) => choice.text === choiceText)) {
-      setError(true);
-      setHelperText('Diese Antwort existiert bereits.');
-    } else {
-      const additionalChoice: Choice = {
-        id: Date.now().toString(),
-        text: choiceText.trim(),
-      };
-      setChoices([...choices, additionalChoice]);
+    const handleClickAway = () => {
+      setIsTyping(false);
       setChoiceText('');
-      scrollDownAfterSubmit();
-    }
-  };
+      setError(false);
+      setHelperText(' ');
+    };
 
-  const scrollDownAfterSubmit = () => {
-    const textFieldHeight = 56;
-    const gridGap = 16;
-    window.scrollBy({
-      top: textFieldHeight + gridGap,
-      behavior: 'smooth',
-    });
-  };
+    const handleChoiceTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+      setError(false);
+      setHelperText(' ');
+      setChoiceText(event.target.value);
+    };
 
-  return (
-    <Wrapper>
-      <ClickAwayListener onClickAway={handleClickAway}>
-        {isTyping ? (
-          <TextFieldIconButtonWrapper>
-            <TextField
-              id="additional-choice"
-              label="zusätzliche Antwort"
-              inputRef={inputRef}
+    const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+      if (isEnterKey(event)) {
+        submit();
+      }
+      if (isEscapeKey(event)) {
+        handleClickAway();
+      }
+    };
+
+    const handleAddIconButtonClick = () => {
+      submit();
+      inputRef.current?.focus();
+    };
+
+    const submit = () => {
+      if (choiceText.length === 0) {
+        setError(true);
+        setHelperText('Bitte eine Antwort eingeben.');
+      } else if (choices.some((choice) => choice.text === choiceText)) {
+        setError(true);
+        setHelperText('Diese Antwort existiert bereits.');
+      } else {
+        const additionalChoice: Choice = {
+          id: Date.now().toString(),
+          text: choiceText.trim(),
+        };
+        setChoices([...choices, additionalChoice]);
+        setChoiceText('');
+        scrollDownAfterSubmit();
+      }
+    };
+
+    const scrollDownAfterSubmit = () => {
+      const textFieldHeight = 56;
+      const gridGap = 16;
+      window.scrollBy({
+        top: textFieldHeight + gridGap,
+        behavior: 'smooth',
+      });
+    };
+
+    return (
+      <Wrapper>
+        <ClickAwayListener onClickAway={handleClickAway}>
+          {isTyping ? (
+            <TextFieldIconButtonWrapper>
+              <TextField
+                id="additional-choice"
+                label="zusätzliche Antwort"
+                inputRef={inputRef}
+                variant="outlined"
+                fullWidth
+                autoFocus
+                InputLabelProps={{ shrink: true }}
+                value={choiceText}
+                error={error}
+                helperText={helperText}
+                onChange={handleChoiceTextChange}
+                onKeyDown={handleKeyDown}
+              />
+              <StyledAddIconButton
+                aria-label="hinzufügen"
+                onClick={handleAddIconButtonClick}
+              >
+                <Add />
+              </StyledAddIconButton>
+            </TextFieldIconButtonWrapper>
+          ) : (
+            <StyledButton
               variant="outlined"
+              color="primary"
+              size="large"
               fullWidth
-              autoFocus
-              InputLabelProps={{ shrink: true }}
-              value={choiceText}
-              error={error}
-              helperText={helperText}
-              onChange={handleChoiceTextChange}
-              onKeyDown={handleKeyDown}
-            />
-            <StyledAddIconButton
-              aria-label="hinzufügen"
-              onClick={handleAddIconButtonClick}
+              onClick={handleAddAdditionalChoiceButtonClick}
+              disableTouchRipple
             >
-              <Add />
-            </StyledAddIconButton>
-          </TextFieldIconButtonWrapper>
-        ) : (
-          <StyledButton
-            variant="outlined"
-            color="primary"
-            size="large"
-            fullWidth
-            onClick={handleAddAdditionalChoiceButtonClick}
-            disableTouchRipple
-          >
-            <StyledAddIcon />
-            zusätzliche Antwort
-          </StyledButton>
-        )}
-      </ClickAwayListener>
-    </Wrapper>
-  );
-};
+              <StyledAddIcon />
+              zusätzliche Antwort
+            </StyledButton>
+          )}
+        </ClickAwayListener>
+      </Wrapper>
+    );
+  }
+);
 
 const Wrapper = styled.div`
   height: 78px;
