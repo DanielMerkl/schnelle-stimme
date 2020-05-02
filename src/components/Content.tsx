@@ -5,7 +5,6 @@ import { routes } from '../utils/routes';
 import { HomePage } from '../page/home/HomePage';
 import { PollPage } from '../page/poll/PollPage';
 import { PollCreationPage } from '../page/pollCreation/PollCreationPage';
-import { PollJoiningPage } from '../page/pollJoining/PollJoiningPage';
 import { ResultPage } from '../page/result/ResultPage';
 import { ImprintPage } from '../page/imprint/ImprintPage';
 import { PrivacyPage } from '../page/privacy/PrivacyPage';
@@ -21,9 +20,6 @@ export const Content: FC = () => (
     </Route>
     <Route path={routes.creation}>
       <PollCreationPage />
-    </Route>
-    <Route path={routes.joining}>
-      <PollJoiningPage />
     </Route>
     <Route path={routes.result}>
       <ResultPage />
