@@ -81,10 +81,11 @@ export const PollJoiningCallToAction: FC = () => {
         value={code}
         id="code"
         onChange={handleCodeChange}
-        inputMode="numeric"
+        inputProps={{ inputMode: 'numeric' }}
         error={error}
         helperText={helperText}
         onKeyPress={handleKeyPress}
+        autoComplete="off"
       />
       <Fab
         variant="extended"
