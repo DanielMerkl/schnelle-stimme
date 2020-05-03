@@ -13,26 +13,24 @@ export const SubmitVoteButton: FC<Props> = ({
   disabled,
   isLoading,
   onClick,
-}) => {
-  return (
-    <StyledFab
-      variant="extended"
-      color="primary"
-      size="large"
-      onClick={onClick}
-      disabled={disabled}
-    >
-      {isLoading ? (
-        <CircularProgress size={24} />
-      ) : (
-        <>
-          <StyledIcon />
-          abstimmen
-        </>
-      )}
-    </StyledFab>
-  );
-};
+}) => (
+  <StyledFab
+    variant="extended"
+    color="primary"
+    size="large"
+    onClick={onClick}
+    disabled={disabled}
+  >
+    {isLoading ? (
+      <CircularProgress size={24} />
+    ) : (
+      <>
+        <StyledIcon />
+        abstimmen
+      </>
+    )}
+  </StyledFab>
+);
 
 const StyledFab = styled(Fab)`
   padding: 0 2rem;
