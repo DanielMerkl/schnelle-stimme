@@ -32,8 +32,15 @@ const findPollByInvitationCode = jest.fn(
   }
 );
 
+const submitAnswer = jest.fn(
+  async (): Promise<void> => {
+    return Promise.resolve();
+  }
+);
+
 export const Api: typeof RealApi = {
   signIn,
   createPoll,
   findPollByInvitationCode,
+  submitAnswer,
 };
