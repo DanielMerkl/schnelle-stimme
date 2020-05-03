@@ -1,4 +1,4 @@
-import firebase, { User } from 'firebase';
+import { firestore, User } from 'firebase/app';
 
 import { Firebase } from './Firebase';
 import { Poll } from '../types/interface/Poll';
@@ -73,7 +73,7 @@ const submitAnswer = async (pollId: string, answer: Answer): Promise<void> => {
       .collection(Collection.polls)
       .doc(pollId)
       .update({
-        answers: firebase.firestore.FieldValue.arrayUnion(answer),
+        answers: firestore.FieldValue.arrayUnion(answer),
       });
   } catch (e) {
     console.error(e);
