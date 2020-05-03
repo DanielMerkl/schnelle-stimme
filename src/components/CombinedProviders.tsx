@@ -7,6 +7,7 @@ import { PollCreationContextProvider } from '../context/PollCreationContext';
 import { UserContextProvider } from '../context/UserContext';
 import { SnackbarContextProvider } from '../context/SnackbarContext';
 import { PollContextProvider } from '../context/PollContext';
+import { ResultContextProvider } from '../context/ResultContext';
 
 export const CombinedProviders: FC = ({ children }) => {
   return (
@@ -17,7 +18,7 @@ export const CombinedProviders: FC = ({ children }) => {
             <UserContextProvider>
               <PollContextProvider>
                 <PollCreationContextProvider>
-                  {children}
+                  <ResultContextProvider>{children}</ResultContextProvider>
                 </PollCreationContextProvider>
               </PollContextProvider>
             </UserContextProvider>
