@@ -33,6 +33,16 @@ export const PollPage: FC = () => {
   const isValidAnswer = useIsValidAnswer(answer, poll?.type);
   const isMounted = useIsMounted();
 
+  const hasAlreadySubmittedVote: boolean = useMemo((): boolean => {
+    if (poll === null || user === null) {
+      return false;
+    }
+
+    return poll.answers.some((answer) => {
+      return answer.userId === user.uid;
+    });
+  }, [poll, user]);
+
   const handleSubmitButtonClick = async () => {
     if (user === null || poll === null || answer === null) return;
 
