@@ -1,4 +1,10 @@
-import React, { createContext, FC, useState } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  FC,
+  SetStateAction,
+  useState,
+} from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Poll } from '../types/interface/Poll';
@@ -7,11 +13,13 @@ import { routes } from '../utils/routes';
 interface PollContext {
   poll: Poll | null;
   openPoll: (poll: Poll) => void;
+  setPoll: Dispatch<SetStateAction<Poll | null>>;
 }
 
 export const PollContext = createContext<PollContext>({
   poll: null,
   openPoll: () => {},
+  setPoll: () => {},
 });
 
 export const PollContextProvider: FC = ({ children }) => {
@@ -25,7 +33,7 @@ export const PollContextProvider: FC = ({ children }) => {
   };
 
   return (
-    <PollContext.Provider value={{ poll, openPoll }}>
+    <PollContext.Provider value={{ poll, openPoll, setPoll }}>
       {children}
     </PollContext.Provider>
   );
