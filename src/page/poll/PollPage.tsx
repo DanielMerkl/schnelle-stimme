@@ -27,7 +27,7 @@ import { Answer } from '../../types/interface/Answer';
 export type SetAnswerType = Dispatch<SetStateAction<AnswerContent | null>>;
 
 export const PollPage: FC = () => {
-  const { poll } = useContext(PollContext);
+  const { poll, setPoll } = useContext(PollContext);
   const { user } = useContext(UserContext);
   const { showSnackbar } = useContext(SnackbarContext);
   const { openResultPage } = useContext(ResultContext);
@@ -53,10 +53,13 @@ export const PollPage: FC = () => {
 
     setIsLoading(true);
     try {
-      await Api.submitAnswer(poll.id, {
+      const newAnswer: Answer = {
         userId: user.uid,
         content: answer,
-      });
+      };
+      await Api.submitAnswer(poll.id, newAnswer);
+      const updatedAnswers = [...poll.answers, newAnswer];
+      setPoll({ ...poll, answers: updatedAnswers });
       openResultPage(poll.id);
     } catch (e) {
       showSnackbar(e);
