@@ -3,10 +3,12 @@ import React, {
   FC,
   SetStateAction,
   useContext,
+  useMemo,
   useState,
 } from 'react';
 import { Typography } from '@material-ui/core';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
 import { PollContext } from '../../context/PollContext';
 import { AnswerContent } from '../../types/type/AnswerContent';
@@ -18,6 +20,9 @@ import { SubmitVoteButton } from './SubmitVoteButton';
 import { useIsValidAnswer } from './useIsValidAnswer';
 import { useIsMounted } from '../../utils/hook/useIsMounted';
 import { ChoiceSelection } from './ChoiceSelection';
+import { routes } from '../../utils/routes';
+import { AlreadyParticipatedDialog } from './AlreadyParticipatedDialog';
+import { Answer } from '../../types/interface/Answer';
 
 export type SetAnswerType = Dispatch<SetStateAction<AnswerContent | null>>;
 
@@ -61,25 +66,31 @@ export const PollPage: FC = () => {
     }
   };
 
+  if (poll === null) {
+    return <Redirect to={routes.home} />;
+  }
+
+  if (hasAlreadySubmittedVote) {
+    return (
+      <AlreadyParticipatedDialog onClick={() => openResultPage(poll.id)} />
+    );
+  }
+
   return (
     <Wrapper>
-      {poll !== null && (
-        <>
-          <Typography variant="h4">{poll.topic}</Typography>
-          <Typography variant="body1">{poll.description}</Typography>
-          <ChoiceSelection
-            pollType={poll.type}
-            choices={poll.choices}
-            answer={answer}
-            setAnswer={setAnswer}
-          />
-          <SubmitVoteButton
-            disabled={!isValidAnswer || isLoading}
-            isLoading={isLoading}
-            onClick={handleSubmitButtonClick}
-          />
-        </>
-      )}
+      <Typography variant="h4">{poll.topic}</Typography>
+      <Typography variant="body1">{poll.description}</Typography>
+      <ChoiceSelection
+        pollType={poll.type}
+        choices={poll.choices}
+        answer={answer}
+        setAnswer={setAnswer}
+      />
+      <SubmitVoteButton
+        disabled={!isValidAnswer || isLoading}
+        isLoading={isLoading}
+        onClick={handleSubmitButtonClick}
+      />
     </Wrapper>
   );
 };
