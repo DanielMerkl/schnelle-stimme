@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { FC } from 'react';
 import {
   FormControl,
   FormControlLabel,
@@ -20,29 +20,22 @@ export const SingleChoiceSelection: FC<Props> = ({
   answer,
   choices,
   setAnswer,
-}) => {
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setAnswer(Number(value));
-  };
-
-  return (
-    <FormControl>
-      <RadioGroup
-        aria-label="Antwortmöglichkeiten"
-        name="Antwortmöglichkeiten"
-        value={answer}
-        onChange={handleChange}
-      >
-        {choices.map((choice, index) => (
-          <FormControlLabel
-            key={choice.id}
-            control={<Radio color="primary" />}
-            label={choice.text}
-            value={index}
-          />
-        ))}
-      </RadioGroup>
-    </FormControl>
-  );
-};
+}) => (
+  <FormControl>
+    <RadioGroup
+      aria-label="Antwortmöglichkeiten"
+      name="Antwortmöglichkeiten"
+      value={answer}
+      onChange={(event) => setAnswer(Number(event.target.value))}
+    >
+      {choices.map((choice, index) => (
+        <FormControlLabel
+          key={choice.id}
+          control={<Radio color="primary" />}
+          label={choice.text}
+          value={index}
+        />
+      ))}
+    </RadioGroup>
+  </FormControl>
+);
