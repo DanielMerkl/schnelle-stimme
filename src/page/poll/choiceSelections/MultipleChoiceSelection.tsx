@@ -22,11 +22,11 @@ export const MultipleChoiceSelection: FC<Props> = ({
   setAnswer,
 }) => {
   const handleChange = (index: number, checked: boolean) => {
-    const answerCopy = [...answer];
     if (checked) {
-      setAnswer([...answerCopy, index]);
+      const updatedAnswers = [...answer, index];
+      setAnswer(updatedAnswers);
     } else {
-      const filteredAnswers = answerCopy.filter((i) => i !== index);
+      const filteredAnswers = answer.filter((i) => i !== index);
       setAnswer(filteredAnswers);
     }
   };
