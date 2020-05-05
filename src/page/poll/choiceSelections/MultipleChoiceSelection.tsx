@@ -41,6 +41,7 @@ export const MultipleChoiceSelection: FC<Props> = ({
               <Checkbox
                 color="primary"
                 checked={answer.includes(index)}
+                inputProps={{ 'aria-checked': answer.includes(index) }}
                 onChange={(event, checked) => handleChange(index, checked)}
                 name={choice.id}
               />
