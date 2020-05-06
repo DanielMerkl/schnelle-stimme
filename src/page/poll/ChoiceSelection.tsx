@@ -26,6 +26,7 @@ export const ChoiceSelection: FC<Props> = ({
     case PollType.SINGLE_CHOICE:
       return (
         <SingleChoiceSelection
+          data-testid="single-choice-selection"
           answer={answer as SingleChoiceAnswer}
           choices={choices}
           setAnswer={setAnswer}
@@ -34,6 +35,7 @@ export const ChoiceSelection: FC<Props> = ({
     case PollType.MULTIPLE_CHOICE:
       return (
         <MultipleChoiceSelection
+          data-testid="multiple-choice-selection"
           answer={answer === null ? [] : (answer as MultipleChoiceAnswer)}
           choices={choices}
           setAnswer={setAnswer}

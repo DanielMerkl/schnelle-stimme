@@ -20,8 +20,9 @@ export const SingleChoiceSelection: FC<Props> = ({
   answer,
   choices,
   setAnswer,
+  ...other
 }) => (
-  <FormControl>
+  <FormControl {...other}>
     <RadioGroup
       aria-label="Antwortmöglichkeiten"
       name="Antwortmöglichkeiten"

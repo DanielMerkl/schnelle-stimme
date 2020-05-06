@@ -20,6 +20,7 @@ export const MultipleChoiceSelection: FC<Props> = ({
   answer,
   choices,
   setAnswer,
+  ...other
 }) => {
   const handleChange = (index: number, checked: boolean) => {
     if (checked) {
@@ -32,7 +33,7 @@ export const MultipleChoiceSelection: FC<Props> = ({
   };
 
   return (
-    <FormControl>
+    <FormControl {...other}>
       <FormGroup aria-label="Antwortmöglichkeiten">
         {choices.map((choice, index) => (
           <FormControlLabel
