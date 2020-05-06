@@ -1,5 +1,6 @@
-import { AnswerContent } from '../../types/type/AnswerContent';
 import { useMemo } from 'react';
+
+import { AnswerContent } from '../../types/type/AnswerContent';
 import { PollType } from '../../types/enum/PollType';
 import { SingleChoiceAnswer } from '../../types/type/SingleChoiceAnswer';
 import { MultipleChoiceAnswer } from '../../types/type/MultipleChoiceAnswer';
