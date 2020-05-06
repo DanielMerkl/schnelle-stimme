@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { CircularProgress, Fab } from '@material-ui/core';
-import styled from 'styled-components';
 import { HowToVoteOutlined } from '@material-ui/icons';
+import styled from 'styled-components';
 
 interface Props {
   disabled: boolean;
