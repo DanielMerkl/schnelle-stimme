@@ -52,7 +52,7 @@ export const PollJoiningCallToAction: FC = () => {
       setIsLoading(true);
       try {
         const foundPoll = await Api.findPollByInvitationCode(Number(code));
-        if (foundPoll == null) {
+        if (foundPoll === null) {
           setError(true);
           setHelperText(messages.error.noPollFound);
         } else {

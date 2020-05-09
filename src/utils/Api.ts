@@ -1,8 +1,9 @@
-import { User } from 'firebase';
+import { firestore, User } from 'firebase/app';
 
 import { Firebase } from './Firebase';
 import { Poll } from '../types/interface/Poll';
 import { Collection } from '../types/enum/Collection';
+import { Answer } from '../types/interface/Answer';
 
 const FirebaseFunctions = Firebase.functions('europe-west3');
 
@@ -66,8 +67,23 @@ const findPollByInvitationCode = async (code: number): Promise<Poll | null> => {
   }
 };
 
+const submitAnswer = async (pollId: string, answer: Answer): Promise<void> => {
+  try {
+    await Firebase.firestore()
+      .collection(Collection.polls)
+      .doc(pollId)
+      .update({
+        answers: firestore.FieldValue.arrayUnion(answer),
+      });
+  } catch (e) {
+    console.error(e);
+    throw new Error('Fehler beim Speichern der Antwort.');
+  }
+};
+
 export const Api = {
   signIn,
   createPoll,
   findPollByInvitationCode,
+  submitAnswer,
 };

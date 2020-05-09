@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 
 import { Header } from './Header';
 import { renderWithProviders } from '../utils/function/renderWithProviders';
-import { renderWithRouter } from '../utils/function/renderWithRouter';
 import { routes } from '../utils/routes';
 
 describe('Header', () => {
@@ -22,7 +21,8 @@ describe('Header', () => {
   });
 
   it('navigates to home after clicking on the home button', () => {
-    const { getByTestId, history } = renderWithRouter(<Header />, {
+    const { getByTestId, history } = renderWithProviders(<Header />, {
+      mockRouter: true,
       initialRoute: routes.imprint,
     });
     const homeButton = getByTestId('home-button');
@@ -33,7 +33,8 @@ describe('Header', () => {
   });
 
   it('navigates to home after clicking on the title', () => {
-    const { getByText, history } = renderWithRouter(<Header />, {
+    const { getByText, history } = renderWithProviders(<Header />, {
+      mockRouter: true,
       initialRoute: routes.imprint,
     });
     const title = getByText('Schnelle Stimme', { exact: false });
