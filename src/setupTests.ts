@@ -6,3 +6,4 @@ import '@testing-library/jest-dom/extend-expect';
 import 'jest-localstorage-mock';
 
 jest.mock('./utils/Api');
+window.scrollTo = jest.fn();
