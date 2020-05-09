@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { PollCreationCallToAction } from './PollCreationCallToAction';
-import { renderWithRouter } from '../../utils/function/renderWithRouter';
+import { renderWithProviders } from '../../utils/function/renderWithProviders';
 import { routes } from '../../utils/routes';
 import { App } from '../../App';
 import { keyboardEventMock } from '../../utils/keyboardEventMock';
@@ -29,7 +29,7 @@ describe('PollCreationCallToAction', () => {
       getByLabelText,
       getByDisplayValue,
       history,
-    } = renderWithRouter(<App />);
+    } = renderWithProviders(<App />, { mockRouter: true });
     const submitButton = getByText('erstellen');
     const topicInput = getByLabelText('Thema / Frage');
 
@@ -42,9 +42,11 @@ describe('PollCreationCallToAction', () => {
   });
 
   it('it forwards the current topic to the creation page after pressing the enter key', () => {
-    const { getByDisplayValue, getByLabelText, history } = renderWithRouter(
-      <App />
-    );
+    const {
+      getByDisplayValue,
+      getByLabelText,
+      history,
+    } = renderWithProviders(<App />, { mockRouter: true });
     const topicInput = getByLabelText('Thema / Frage');
 
     userEvent.type(topicInput, 'Banana');
