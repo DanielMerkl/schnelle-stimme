@@ -43,7 +43,9 @@ describe('PollPage', () => {
       } as User,
     });
 
-    const headline = getByText('Vielen für deine Teilnahme an der Umfrage!');
+    const headline = getByText(
+      'Vielen Dank für deine Teilnahme an der Umfrage!'
+    );
     const button = getByText('zum Ergebnis');
 
     expect(headline).toBeInTheDocument();

@@ -18,7 +18,9 @@ describe('AlreadyParticipatedDialog.test', () => {
 
   it('renders a headline', () => {
     const { getByText } = renderResult;
-    const headline = getByText('Vielen für deine Teilnahme an der Umfrage!');
+    const headline = getByText(
+      'Vielen Dank für deine Teilnahme an der Umfrage!'
+    );
 
     expect(headline).toBeInTheDocument();
   });

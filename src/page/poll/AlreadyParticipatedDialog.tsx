@@ -10,7 +10,7 @@ interface Props {
 export const AlreadyParticipatedDialog: FC<Props> = ({ onClick }) => (
   <Wrapper>
     <Typography variant="h5" align="center">
-      Vielen für deine Teilnahme an der Umfrage!
+      Vielen Dank für deine Teilnahme an der Umfrage!
     </Typography>
     <StyledFab
       variant="extended"
