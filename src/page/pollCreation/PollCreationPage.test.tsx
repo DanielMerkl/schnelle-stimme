@@ -118,10 +118,10 @@ describe('PollCreationPage', () => {
   it('calls the api with the correct parameters', async () => {
     const { getByText } = renderResult;
     const submitButtonLabel = getByText('veröffentlichen');
-    const submitButton = submitButtonLabel.parentElement ?? new Element();
+    const submitButton = submitButtonLabel.parentElement;
 
     await act(async () => {
-      fireEvent.click(submitButton);
+      fireEvent.click(submitButton!);
     });
 
     const poll: Poll = ApiMock.createPoll.mock.calls[0][0];
@@ -144,11 +144,11 @@ describe('PollCreationPage', () => {
 
     const { getByText } = renderResult;
     const submitButtonLabel = getByText('veröffentlichen');
-    const submitButton = submitButtonLabel.parentElement ?? new Element();
+    const submitButton = submitButtonLabel.parentElement;
 
     expect(submitButton).toBeEnabled();
 
-    userEvent.click(submitButton);
+    userEvent.click(submitButton!);
 
     expect(submitButton).toBeDisabled();
 
@@ -166,10 +166,10 @@ describe('PollCreationPage', () => {
 
     const { getByText } = renderResult;
     const submitButtonLabel = getByText('veröffentlichen');
-    const submitButton = submitButtonLabel.parentElement ?? new Element();
+    const submitButton = submitButtonLabel.parentElement;
 
     await act(async () => {
-      userEvent.click(submitButton);
+      userEvent.click(submitButton!);
     });
 
     const snackbar = getByText('Fehler beim Erstellen der Umfrage.');
@@ -179,10 +179,10 @@ describe('PollCreationPage', () => {
   xit('opens the poll page with the created poll', async () => {
     const { getByText } = renderResult;
     const submitButtonLabel = getByText('veröffentlichen');
-    const submitButton = submitButtonLabel.parentElement ?? new Element();
+    const submitButton = submitButtonLabel.parentElement;
 
     await act(async () => {
-      fireEvent.click(submitButton);
+      fireEvent.click(submitButton!);
     });
 
     // TODO: continue when the poll page is implemented

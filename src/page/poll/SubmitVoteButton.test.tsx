@@ -41,9 +41,9 @@ describe('SubmitVoteButton', () => {
         onClick={onClickMock}
       />
     );
-    const button = getByText('abstimmen').parentElement ?? new Element();
+    const button = getByText('abstimmen').parentElement;
 
-    userEvent.click(button);
+    userEvent.click(button!);
 
     expect(onClickMock).toHaveBeenCalled();
   });
