@@ -108,9 +108,11 @@ const RouterMock: FC<RouterMockProps> = ({ options, history, children }) => {
 };
 
 const SnackbarContextMock: FC<ComponentMock> = ({ options, children }) => {
-  if (options?.mockSnackbarContext && options.showSnackbar) {
+  if (options?.mockSnackbarContext) {
     return (
-      <SnackbarContext.Provider value={{ showSnackbar: options.showSnackbar }}>
+      <SnackbarContext.Provider
+        value={{ showSnackbar: options.showSnackbar ?? jest.fn() }}
+      >
         {children}
       </SnackbarContext.Provider>
     );
@@ -120,9 +122,9 @@ const SnackbarContextMock: FC<ComponentMock> = ({ options, children }) => {
 };
 
 const UserContextMock: FC<ComponentMock> = ({ options, children }) => {
-  if (options?.mockUserContext && options.user) {
+  if (options?.mockUserContext) {
     return (
-      <UserContext.Provider value={{ user: options.user }}>
+      <UserContext.Provider value={{ user: options.user ?? null }}>
         {children}
       </UserContext.Provider>
     );
@@ -132,18 +134,13 @@ const UserContextMock: FC<ComponentMock> = ({ options, children }) => {
 };
 
 const PollContextMock: FC<ComponentMock> = ({ options, children }) => {
-  if (
-    options?.mockPollContext &&
-    options.poll &&
-    options.setPoll &&
-    options.openPoll
-  ) {
+  if (options?.mockPollContext) {
     return (
       <PollContext.Provider
         value={{
-          poll: options.poll,
-          setPoll: options.setPoll,
-          openPoll: options.openPoll,
+          poll: options.poll ?? null,
+          setPoll: options.setPoll ?? jest.fn(),
+          openPoll: options.openPoll ?? jest.fn(),
         }}
       >
         {children}
@@ -155,16 +152,12 @@ const PollContextMock: FC<ComponentMock> = ({ options, children }) => {
 };
 
 const PollCreationContextMock: FC<ComponentMock> = ({ options, children }) => {
-  if (
-    options?.mockPollCreationContext &&
-    options.initialTopic &&
-    options.openWithInitialTopic
-  ) {
+  if (options?.mockPollCreationContext) {
     return (
       <PollCreationContext.Provider
         value={{
-          initialTopic: options.initialTopic,
-          openWithInitialTopic: options.openWithInitialTopic,
+          initialTopic: options.initialTopic ?? '',
+          openWithInitialTopic: options.openWithInitialTopic ?? jest.fn(),
         }}
       >
         {children}
@@ -178,12 +171,12 @@ const PollCreationContextMock: FC<ComponentMock> = ({ options, children }) => {
 };
 
 const ResultContextMock: FC<ComponentMock> = ({ options, children }) => {
-  if (options?.mockResultContext && options.result && options.openResultPage) {
+  if (options?.mockResultContext) {
     return (
       <ResultContext.Provider
         value={{
-          result: options.result,
-          openResultPage: options.openResultPage,
+          result: options.result ?? null,
+          openResultPage: options.openResultPage ?? jest.fn(),
         }}
       >
         {children}
