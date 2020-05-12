@@ -14,18 +14,18 @@ describe('Header', () => {
   });
 
   it('renders a home button', () => {
-    const { getByTestId } = renderWithProviders(<Header />);
-    const homeButton = getByTestId('home-button');
+    const { getByLabelText } = renderWithProviders(<Header />);
+    const homeButton = getByLabelText('Zur Startseite');
 
     expect(homeButton).toBeInTheDocument();
   });
 
   it('navigates to home after clicking on the home button', () => {
-    const { getByTestId, history } = renderWithProviders(<Header />, {
+    const { getByLabelText, history } = renderWithProviders(<Header />, {
       mockRouter: true,
       initialRoute: routes.imprint,
     });
-    const homeButton = getByTestId('home-button');
+    const homeButton = getByLabelText('Zur Startseite');
 
     userEvent.click(homeButton);
 
