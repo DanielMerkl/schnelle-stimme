@@ -41,7 +41,7 @@ interface Options extends ShouldMock {
   initialTopic?: string;
   openWithInitialTopic?: (topic: string) => void;
   result?: Poll | null;
-  openResultPage?: (pollId: string) => void;
+  openResultPage?: (poll: Poll) => void;
 }
 
 export interface RenderWithProvidersResult extends RenderResult {

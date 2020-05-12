@@ -59,8 +59,9 @@ export const PollPage: FC = () => {
       };
       await Api.submitAnswer(poll.id, newAnswer);
       const updatedAnswers = [...poll.answers, newAnswer];
-      setPoll({ ...poll, answers: updatedAnswers });
-      openResultPage(poll.id);
+      const updatedPoll = { ...poll, answers: updatedAnswers };
+      setPoll(updatedPoll);
+      openResultPage(updatedPoll);
     } catch (e) {
       showSnackbar(e);
     }
@@ -74,9 +75,7 @@ export const PollPage: FC = () => {
   }
 
   if (hasAlreadySubmittedVote) {
-    return (
-      <AlreadyParticipatedDialog onClick={() => openResultPage(poll.id)} />
-    );
+    return <AlreadyParticipatedDialog onClick={() => openResultPage(poll)} />;
   }
 
   return (
