@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 
 import { isEnterKey } from '../../utils/function/isEnterKey';
 import { isEscapeKey } from '../../utils/function/isEscapeKey';
@@ -74,7 +75,7 @@ export const AddAdditionalChoiceInput: FC<Props> = React.memo(
         setHelperText('Diese Antwort existiert bereits.');
       } else {
         const additionalChoice: Choice = {
-          id: Date.now().toString(),
+          id: uuidv4(),
           text: choiceText.trim(),
         };
         setChoices([...choices, additionalChoice]);

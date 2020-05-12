@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderResult, fireEvent, act } from '@testing-library/react';
+import { act, fireEvent, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { renderWithProviders } from '../../utils/function/renderWithProviders';
@@ -174,17 +174,5 @@ describe('PollCreationPage', () => {
 
     const snackbar = getByText('Fehler beim Erstellen der Umfrage.');
     expect(snackbar).toBeInTheDocument();
-  });
-
-  xit('opens the poll page with the created poll', async () => {
-    const { getByText } = renderResult;
-    const submitButtonLabel = getByText('veröffentlichen');
-    const submitButton = submitButtonLabel.parentElement;
-
-    await act(async () => {
-      fireEvent.click(submitButton!);
-    });
-
-    // TODO: continue when the poll page is implemented
   });
 });

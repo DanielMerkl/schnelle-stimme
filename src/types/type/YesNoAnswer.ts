@@ -1,1 +1,0 @@
-export type YesNoAnswer = boolean;

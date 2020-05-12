@@ -1,1 +1,3 @@
-export type SingleChoiceAnswer = number;
+import { ChoiceId } from './ChoiceId';
+
+export type SingleChoiceAnswer = ChoiceId;

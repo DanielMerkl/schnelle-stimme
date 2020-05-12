@@ -1,1 +1,3 @@
-export type MultipleChoiceAnswer = Array<number>;
+import { ChoiceId } from './ChoiceId';
+
+export type MultipleChoiceAnswer = Array<ChoiceId>;

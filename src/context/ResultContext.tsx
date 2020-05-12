@@ -8,7 +8,7 @@ import { routes } from '../utils/routes';
 
 interface ResultContext {
   result: Poll | null;
-  openResultPage: (pollId: string) => void;
+  openResultPage: (poll: Poll) => void;
 }
 
 export const ResultContext = createContext<ResultContext>({
@@ -20,13 +20,13 @@ export const ResultContextProvider: FC = ({ children }) => {
   const history = useHistory();
 
   const [result, setResult] = useState<Poll | null>(null);
-  const [pollId, setPollId] = useState<string | null>(null);
+  const [subscriptionId, setSubscriptionId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (pollId !== null) {
+    if (subscriptionId !== null) {
       const unsubscribe = Firebase.firestore()
         .collection(Collection.polls)
-        .doc(pollId)
+        .doc(subscriptionId)
         .onSnapshot((snapshot) => {
           if (snapshot.exists) {
             setResult(snapshot.data() as Poll);
@@ -39,10 +39,11 @@ export const ResultContextProvider: FC = ({ children }) => {
         unsubscribe();
       };
     }
-  }, [pollId]);
+  }, [subscriptionId]);
 
-  const openResultPage = (pollId: string) => {
-    setPollId(pollId);
+  const openResultPage = (poll: Poll) => {
+    setSubscriptionId(poll.id);
+    setResult(poll);
     history.push(routes.result);
   };
 

@@ -35,7 +35,7 @@ describe('PollPage', () => {
       mockPollContext: true,
       poll: {
         ...defaultPoll,
-        answers: [{ userId: '123', content: 1 }],
+        answers: [{ userId: '123', content: '2' }],
       },
       mockUserContext: true,
       user: {
@@ -66,8 +66,6 @@ describe('PollPage', () => {
           { id: '3', text: 'Cherry' },
         ],
         type: PollType.SINGLE_CHOICE,
-        isNameMandatory: false,
-        isResultSecret: false,
         answers: [],
       },
     });
@@ -101,8 +99,6 @@ describe('PollPage', () => {
           { id: '3', text: 'Cherry' },
         ],
         type: PollType.MULTIPLE_CHOICE,
-        isNameMandatory: false,
-        isResultSecret: false,
         answers: [],
       },
     });
@@ -114,7 +110,7 @@ describe('PollPage', () => {
 
     userEvent.click(bananaChoice);
 
-    // answer is now a valid multiple-choice answer ([0])
+    // answer is now a valid multiple-choice answer ([bananaId])
     expect(submitVoteButton).toBeEnabled();
 
     userEvent.click(bananaChoice);
@@ -137,8 +133,6 @@ describe('PollPage', () => {
         { id: '3', text: 'Cherry' },
       ],
       type: PollType.MULTIPLE_CHOICE,
-      isNameMandatory: false,
-      isResultSecret: false,
       answers: [],
     };
     const { getByText, getByLabelText } = renderWithProviders(<PollPage />, {
@@ -160,13 +154,16 @@ describe('PollPage', () => {
 
     const expectedAnswer: Answer = {
       userId: '222',
-      content: [0], // banana was selected which had an index of 0
+      content: ['1'], // banana was selected which had an id of 1
     };
     expect(ApiMock.submitAnswer).toHaveBeenCalledWith('111', expectedAnswer);
     expect(setPollMock).toHaveBeenCalledWith({
       ...initialPoll,
       answers: [expectedAnswer],
     });
-    expect(openResultPageMock).toHaveBeenCalledWith(initialPoll.id);
+    expect(openResultPageMock).toHaveBeenCalledWith({
+      ...initialPoll,
+      answers: [expectedAnswer],
+    });
   });
 });

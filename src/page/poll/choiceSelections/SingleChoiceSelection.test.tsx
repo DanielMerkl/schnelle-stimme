@@ -10,10 +10,13 @@ describe('SingleChoiceSelection', () => {
   let renderResult: RenderResult;
   const setAnswerMock = jest.fn();
   const answer: SingleChoiceAnswer | null = null;
+  const bananaId = '1';
+  const appleId = '2';
+  const cherryId = '3';
   const choices: Array<Choice> = [
-    { id: '1', text: 'Banana' },
-    { id: '2', text: 'Apple' },
-    { id: '3', text: 'Cherry' },
+    { id: bananaId, text: 'Banana' },
+    { id: appleId, text: 'Apple' },
+    { id: cherryId, text: 'Cherry' },
   ];
 
   beforeEach(() => {
@@ -45,7 +48,7 @@ describe('SingleChoiceSelection', () => {
     const { getByLabelText, rerender } = renderResult;
     rerender(
       <SingleChoiceSelection
-        answer={1}
+        answer={appleId}
         choices={choices}
         setAnswer={setAnswerMock}
       />
@@ -67,14 +70,14 @@ describe('SingleChoiceSelection', () => {
 
     userEvent.click(bananaChoice);
 
-    expect(setAnswerMock).toHaveBeenLastCalledWith(0);
+    expect(setAnswerMock).toHaveBeenLastCalledWith(bananaId);
 
     userEvent.click(appleChoice);
 
-    expect(setAnswerMock).toHaveBeenLastCalledWith(1);
+    expect(setAnswerMock).toHaveBeenLastCalledWith(appleId);
 
     userEvent.click(cherryChoice);
 
-    expect(setAnswerMock).toHaveBeenLastCalledWith(2);
+    expect(setAnswerMock).toHaveBeenLastCalledWith(cherryId);
   });
 });
