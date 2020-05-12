@@ -35,7 +35,7 @@ describe('PollPage', () => {
       mockPollContext: true,
       poll: {
         ...defaultPoll,
-        answers: [{ userId: '123', content: 1 }],
+        answers: [{ userId: '123', content: '2' }],
       },
       mockUserContext: true,
       user: {
@@ -114,7 +114,7 @@ describe('PollPage', () => {
 
     userEvent.click(bananaChoice);
 
-    // answer is now a valid multiple-choice answer ([0])
+    // answer is now a valid multiple-choice answer ([bananaId])
     expect(submitVoteButton).toBeEnabled();
 
     userEvent.click(bananaChoice);
@@ -160,7 +160,7 @@ describe('PollPage', () => {
 
     const expectedAnswer: Answer = {
       userId: '222',
-      content: [0], // banana was selected which had an index of 0
+      content: ['1'], // banana was selected which had an id of 1
     };
     expect(ApiMock.submitAnswer).toHaveBeenCalledWith('111', expectedAnswer);
     expect(setPollMock).toHaveBeenCalledWith({

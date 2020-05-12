@@ -9,6 +9,7 @@ import {
 import { Choice } from '../../../types/interface/Choice';
 import { SetAnswerType } from '../PollPage';
 import { MultipleChoiceAnswer } from '../../../types/type/MultipleChoiceAnswer';
+import { ChoiceId } from '../../../types/type/ChoiceId';
 
 interface Props {
   answer: MultipleChoiceAnswer;
@@ -22,12 +23,12 @@ export const MultipleChoiceSelection: FC<Props> = ({
   setAnswer,
   ...other
 }) => {
-  const handleChange = (index: number, checked: boolean) => {
+  const handleChange = (id: ChoiceId, checked: boolean) => {
     if (checked) {
-      const updatedAnswers = [...answer, index];
+      const updatedAnswers = [...answer, id];
       setAnswer(updatedAnswers);
     } else {
-      const filteredAnswers = answer.filter((i) => i !== index);
+      const filteredAnswers = answer.filter((i) => i !== id);
       setAnswer(filteredAnswers);
     }
   };
@@ -35,21 +36,27 @@ export const MultipleChoiceSelection: FC<Props> = ({
   return (
     <FormControl {...other}>
       <FormGroup aria-label="Antwortmöglichkeiten">
-        {choices.map((choice, index) => (
-          <FormControlLabel
-            key={choice.id}
-            control={
-              <Checkbox
-                color="primary"
-                checked={answer.includes(index)}
-                inputProps={{ 'aria-checked': answer.includes(index) }}
-                onChange={(event, checked) => handleChange(index, checked)}
-                name={choice.id}
-              />
-            }
-            label={choice.text}
-          />
-        ))}
+        {choices.map((choice) => {
+          const checked = answer.includes(choice.id);
+
+          return (
+            <FormControlLabel
+              key={choice.id}
+              control={
+                <Checkbox
+                  color="primary"
+                  checked={checked}
+                  inputProps={{ 'aria-checked': checked }}
+                  onChange={(event, checked) => {
+                    handleChange(choice.id, checked);
+                  }}
+                  name={choice.id}
+                />
+              }
+              label={choice.text}
+            />
+          );
+        })}
       </FormGroup>
     </FormControl>
   );

@@ -10,10 +10,13 @@ describe('MultipleChoiceSelection', () => {
   let renderResult: RenderResult;
   const setAnswerMock = jest.fn();
   const answer: MultipleChoiceAnswer = [];
+  const bananaId = '1';
+  const appleId = '2';
+  const cherryId = '3';
   const choices: Array<Choice> = [
-    { id: '1', text: 'Banana' },
-    { id: '2', text: 'Apple' },
-    { id: '3', text: 'Cherry' },
+    { id: bananaId, text: 'Banana' },
+    { id: appleId, text: 'Apple' },
+    { id: cherryId, text: 'Cherry' },
   ];
 
   beforeEach(() => {
@@ -45,7 +48,7 @@ describe('MultipleChoiceSelection', () => {
     const { getByLabelText, rerender } = renderResult;
     rerender(
       <MultipleChoiceSelection
-        answer={[0, 2]}
+        answer={[bananaId, cherryId]}
         choices={choices}
         setAnswer={setAnswerMock}
       />
@@ -65,14 +68,14 @@ describe('MultipleChoiceSelection', () => {
 
     userEvent.click(bananaChoice);
 
-    expect(setAnswerMock).toHaveBeenCalledWith([0]);
+    expect(setAnswerMock).toHaveBeenCalledWith([bananaId]);
   });
 
   it('calls setAnswer correctly (unchecking)', () => {
     const { getByLabelText, rerender } = renderResult;
     rerender(
       <MultipleChoiceSelection
-        answer={[0, 1, 2]}
+        answer={[bananaId, appleId, cherryId]}
         choices={choices}
         setAnswer={setAnswerMock}
       />
@@ -81,6 +84,6 @@ describe('MultipleChoiceSelection', () => {
 
     userEvent.click(bananaChoice);
 
-    expect(setAnswerMock).toHaveBeenCalledWith([1, 2]);
+    expect(setAnswerMock).toHaveBeenCalledWith([appleId, cherryId]);
   });
 });

@@ -27,14 +27,14 @@ export const SingleChoiceSelection: FC<Props> = ({
       aria-label="Antwortmöglichkeiten"
       name="Antwortmöglichkeiten"
       value={answer}
-      onChange={(event) => setAnswer(Number(event.target.value))}
+      onChange={(event) => setAnswer(event.target.value)}
     >
-      {choices.map((choice, index) => (
+      {choices.map((choice) => (
         <FormControlLabel
           key={choice.id}
           control={<Radio color="primary" />}
           label={choice.text}
-          value={index}
+          value={choice.id}
         />
       ))}
     </RadioGroup>
