@@ -66,8 +66,6 @@ describe('PollPage', () => {
           { id: '3', text: 'Cherry' },
         ],
         type: PollType.SINGLE_CHOICE,
-        isNameMandatory: false,
-        isResultSecret: false,
         answers: [],
       },
     });
@@ -101,8 +99,6 @@ describe('PollPage', () => {
           { id: '3', text: 'Cherry' },
         ],
         type: PollType.MULTIPLE_CHOICE,
-        isNameMandatory: false,
-        isResultSecret: false,
         answers: [],
       },
     });
@@ -137,8 +133,6 @@ describe('PollPage', () => {
         { id: '3', text: 'Cherry' },
       ],
       type: PollType.MULTIPLE_CHOICE,
-      isNameMandatory: false,
-      isResultSecret: false,
       answers: [],
     };
     const { getByText, getByLabelText } = renderWithProviders(<PollPage />, {

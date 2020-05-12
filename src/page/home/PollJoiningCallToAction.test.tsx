@@ -120,8 +120,6 @@ describe('PollJoiningCallToAction', () => {
       description: 'One crooked banana.',
       choices: [{ id: '1', text: 'Apple' }],
       type: PollType.SINGLE_CHOICE,
-      isNameMandatory: false,
-      isResultSecret: false,
       answers: [],
     };
     ApiMock.findPollByInvitationCode.mockResolvedValue(poll);

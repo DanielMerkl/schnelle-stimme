@@ -8,7 +8,5 @@ export const defaultPoll: Poll = {
   description: '',
   choices: [],
   type: PollType.SINGLE_CHOICE,
-  isNameMandatory: false,
-  isResultSecret: false,
   answers: [],
 };

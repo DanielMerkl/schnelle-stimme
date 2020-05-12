@@ -9,7 +9,5 @@ export interface Poll {
   description?: string;
   choices: Array<Choice>;
   type: PollType;
-  isNameMandatory: boolean;
-  isResultSecret: boolean;
   answers: Array<Answer>;
 }
