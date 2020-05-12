@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
+
 import { useAnswerCount } from './useAnswerCount';
 import { defaultPoll } from '../../utils/defaultObject/defaultPoll';
 import { PollType } from '../../types/enum/PollType';
