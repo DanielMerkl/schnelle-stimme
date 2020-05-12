@@ -11,7 +11,7 @@ export const Footer: FC = () => (
       <FooterLink to={routes.imprint}>Impressum</FooterLink>
       <FooterLink to={routes.privacy}>Datenschutzrichtlinien</FooterLink>
       <FooterLink to={routes.terms}>Nutzungsbedingungen</FooterLink>
-      <Typography color="textSecondary">Copyright © 2020</Typography>
+      <StyledTypography>Copyright © 2020</StyledTypography>
     </LinksWrapper>
   </StyledFooter>
 );
@@ -40,9 +40,13 @@ const LinksWrapper = styled.div`
 
 const FooterLink = styled(Link)`
   text-decoration: none;
-  color: rgba(0, 0, 0, 0.54);
+  color: rgba(0, 0, 0, 0.6);
   &:hover {
     text-decoration: underline;
-    color: rgba(0, 0, 0, 0.87);
+    color: black;
   }
+`;
+
+const StyledTypography = styled(Typography)`
+  color: rgba(0, 0, 0, 0.6);
 `;
