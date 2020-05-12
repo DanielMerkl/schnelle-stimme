@@ -26,6 +26,7 @@ export const ChoiceResult: FC<Props> = ({
       <Typography>({numberOfVotes})</Typography>
       <OuterBar backgroundColor={theme.palette.primary.main}>
         <InnerBar
+          data-testid="inner-bar"
           percentage={percentage}
           backgroundColor={theme.palette.primary.main}
         />
