@@ -161,6 +161,9 @@ describe('PollPage', () => {
       ...initialPoll,
       answers: [expectedAnswer],
     });
-    expect(openResultPageMock).toHaveBeenCalledWith(initialPoll.id);
+    expect(openResultPageMock).toHaveBeenCalledWith({
+      ...initialPoll,
+      answers: [expectedAnswer],
+    });
   });
 });
