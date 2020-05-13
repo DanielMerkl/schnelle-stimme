@@ -6,7 +6,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { Typography } from '@material-ui/core';
+import { Divider, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
@@ -23,6 +23,7 @@ import { ChoiceSelection } from './ChoiceSelection';
 import { routes } from '../../utils/routes';
 import { AlreadyParticipatedDialog } from './AlreadyParticipatedDialog';
 import { Answer } from '../../types/interface/Answer';
+import { InvitationCode } from '../../components/InvitationCode';
 
 export type SetAnswerType = Dispatch<SetStateAction<AnswerContent | null>>;
 
@@ -93,6 +94,8 @@ export const PollPage: FC = () => {
         isLoading={isLoading}
         onClick={handleSubmitButtonClick}
       />
+      <Divider />
+      <InvitationCode code={poll.invitationCode} />
     </Wrapper>
   );
 };

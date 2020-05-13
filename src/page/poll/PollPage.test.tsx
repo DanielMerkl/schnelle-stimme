@@ -57,7 +57,7 @@ describe('PollPage', () => {
       mockPollContext: true,
       poll: {
         id: '123',
-        invitationCode: 123,
+        invitationCode: 12345,
         topic: 'Das Thema lautet: Banane',
         description: 'Eine tolle Beschreibung',
         choices: [
@@ -76,6 +76,7 @@ describe('PollPage', () => {
     const choice2 = getByText('Apple');
     const choice3 = getByText('Cherry');
     const submitVoteButton = getByText('abstimmen');
+    const invitationCode = getByText('Code: 12345');
 
     expect(topic).toBeInTheDocument();
     expect(description).toBeInTheDocument();
@@ -83,6 +84,7 @@ describe('PollPage', () => {
     expect(choice2).toBeInTheDocument();
     expect(choice3).toBeInTheDocument();
     expect(submitVoteButton).toBeInTheDocument();
+    expect(invitationCode).toBeInTheDocument();
   });
 
   it('disables submit button when answer is invalid', () => {

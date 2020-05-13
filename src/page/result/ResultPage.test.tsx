@@ -96,4 +96,14 @@ describe('ResultPage', () => {
     expect(cherryAmount).toBeInTheDocument();
     expect(cherryPercentage).toBeInTheDocument();
   });
+
+  it('renders the invitation code', () => {
+    const { getByText } = renderWithProviders(<ResultPage />, {
+      mockResultContext: true,
+      result: result,
+    });
+    const invitationCode = getByText('Code: 12345');
+
+    expect(invitationCode).toBeInTheDocument();
+  });
 });

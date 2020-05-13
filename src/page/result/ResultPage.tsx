@@ -1,5 +1,5 @@
 import React, { FC, useContext, useMemo } from 'react';
-import { Typography } from '@material-ui/core';
+import { Divider, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import { ChoiceId } from '../../types/type/ChoiceId';
 import { useAnswerCount } from './useAnswerCount';
 import { ChoiceResult } from './ChoiceResult';
 import { routes } from '../../utils/routes';
+import { InvitationCode } from '../../components/InvitationCode';
 
 export const ResultPage: FC = () => {
   const { result } = useContext(ResultContext);
@@ -38,6 +39,8 @@ export const ResultPage: FC = () => {
         />
       ))}
       <Typography>Anzahl der Teilnehmer: {result.answers.length}</Typography>
+      <Divider />
+      <InvitationCode code={result.invitationCode} />
     </Wrapper>
   );
 };

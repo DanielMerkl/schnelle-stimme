@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InvitationCode renders correctly 1`] = `
+<div>
+  <div
+    class="MuiChip-root sc-AxjAm gwKPmp MuiChip-outlined"
+  >
+    <span
+      class="MuiChip-label"
+    >
+      Code: 12345
+    </span>
+  </div>
+</div>
+`;
