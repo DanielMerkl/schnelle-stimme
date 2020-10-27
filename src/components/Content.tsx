@@ -4,8 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { routes } from '../utils/routes';
 import { HomePage } from '../page/home/HomePage';
 import { PollPage } from '../page/poll/PollPage';
-import { CreatePollPage } from '../page/createPoll/CreatePollPage';
-import { JoinPollPage } from '../page/joinPoll/JoinPollPage';
+import { PollCreationPage } from '../page/pollCreation/PollCreationPage';
 import { ResultPage } from '../page/result/ResultPage';
 import { ImprintPage } from '../page/imprint/ImprintPage';
 import { PrivacyPage } from '../page/privacy/PrivacyPage';
@@ -19,11 +18,8 @@ export const Content: FC = () => (
     <Route path={routes.poll}>
       <PollPage />
     </Route>
-    <Route path={routes.createPoll}>
-      <CreatePollPage />
-    </Route>
-    <Route path={routes.joinPoll}>
-      <JoinPollPage />
+    <Route path={routes.creation}>
+      <PollCreationPage />
     </Route>
     <Route path={routes.result}>
       <ResultPage />

@@ -28,7 +28,7 @@ export const Header: FC = () => {
         <IconButton
           color="inherit"
           onClick={handleHomeIconClick}
-          data-testid="home-button"
+          aria-label="Zur Startseite"
         >
           <HomeOutlined />
         </IconButton>
