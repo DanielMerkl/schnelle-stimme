@@ -73,7 +73,7 @@ export const PollJoiningCallToAction: FC = () => {
   return (
     <CallToActionWrapper>
       <Typography variant="h5" gutterBottom>
-        Trete einer Umfrage bei
+        Tritt einer Umfrage bei
       </Typography>
       <TextField
         variant="outlined"
