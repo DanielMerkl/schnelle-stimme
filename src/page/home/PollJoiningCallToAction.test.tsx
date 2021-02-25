@@ -20,7 +20,7 @@ describe('PollJoiningCallToAction', () => {
 
   it('renders the correct headline', () => {
     const { getByText } = renderWithProviders(<PollJoiningCallToAction />);
-    const headline = getByText('Trete einer Umfrage bei');
+    const headline = getByText('Tritt einer Umfrage bei');
 
     expect(headline).toBeInTheDocument();
   });
