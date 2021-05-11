@@ -10,13 +10,13 @@ import { useHistory } from 'react-router-dom';
 import { Poll } from '../types/interface/Poll';
 import { routes } from '../utils/routes';
 
-interface PollContext {
+interface Context {
   poll: Poll | null;
   openPoll: (poll: Poll) => void;
   setPoll: Dispatch<SetStateAction<Poll | null>>;
 }
 
-export const PollContext = createContext<PollContext>({
+export const PollContext = createContext<Context>({
   poll: null,
   openPoll: () => {},
   setPoll: () => {},

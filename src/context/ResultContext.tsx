@@ -6,12 +6,12 @@ import { Collection } from '../types/enum/Collection';
 import { useHistory } from 'react-router-dom';
 import { routes } from '../utils/routes';
 
-interface ResultContext {
+interface Context {
   result: Poll | null;
   openResultPage: (poll: Poll) => void;
 }
 
-export const ResultContext = createContext<ResultContext>({
+export const ResultContext = createContext<Context>({
   result: null,
   openResultPage: () => {},
 });

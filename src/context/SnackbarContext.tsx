@@ -2,11 +2,11 @@ import React, { createContext, FC, useCallback, useState } from 'react';
 
 import { Snackbar } from '../components/Snackbar';
 
-interface SnackbarContext {
+interface Context {
   showSnackbar: (message: string) => void;
 }
 
-export const SnackbarContext = createContext<SnackbarContext>({
+export const SnackbarContext = createContext<Context>({
   showSnackbar: () => {},
 });
 
@@ -23,7 +23,7 @@ export const SnackbarContextProvider: FC = ({ children }) => {
     setOpen(true);
   }, []);
 
-  const memoizedContextValue: SnackbarContext = React.useMemo(
+  const memoizedContextValue: Context = React.useMemo(
     () => ({ showSnackbar }),
     [showSnackbar]
   );

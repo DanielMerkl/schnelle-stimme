@@ -4,12 +4,12 @@ import { useHistory } from 'react-router-dom';
 import { routes } from '../utils/routes';
 import { PollCreationSessionStorageItem } from '../types/enum/PollCreationSessionStorageItem';
 
-interface PollCreationContext {
+interface Context {
   initialTopic: string;
   openWithInitialTopic: (topic: string) => void;
 }
 
-export const PollCreationContext = createContext<PollCreationContext>({
+export const PollCreationContext = createContext<Context>({
   initialTopic: '',
   openWithInitialTopic: () => {},
 });

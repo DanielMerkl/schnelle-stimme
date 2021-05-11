@@ -10,11 +10,11 @@ import { User } from 'firebase';
 import { SnackbarContext } from './SnackbarContext';
 import { Api } from '../utils/Api';
 
-interface UserContext {
+interface Context {
   user: User | null;
 }
 
-export const UserContext = createContext<UserContext>({
+export const UserContext = createContext<Context>({
   user: null,
 });
 
