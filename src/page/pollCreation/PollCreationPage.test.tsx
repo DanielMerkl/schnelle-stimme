@@ -10,7 +10,7 @@ import { Choice } from '../../types/interface/Choice';
 import { Api } from '../../utils/Api';
 import { Poll } from '../../types/interface/Poll';
 
-describe('PollCreationPage', () => {
+xdescribe('PollCreationPage', () => {
   let renderResult: RenderResult;
   const ApiMock = Api as jest.Mocked<typeof Api>;
 
